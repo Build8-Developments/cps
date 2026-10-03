@@ -15,6 +15,9 @@ const legacyBoothTypeMap = [
 ] as const;
 
 const nextConfig: NextConfig = {
+  // Self-contained server bundle in .next/standalone: CI ships only that
+  // (plus .next/static and public/) to the server, never the source. See DEPLOY.md.
+  output: "standalone",
   async redirects() {
     return [
       {

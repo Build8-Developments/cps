@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Reference-only codebase (its own project/deps); not part of this app.
     "CyberStage_Landing_Page/**",
+    // pm2 process file; CommonJS on purpose (pm2 loads it with require()).
+    "ecosystem.config.cjs",
   ]),
 ]);
 

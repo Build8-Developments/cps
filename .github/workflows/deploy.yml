@@ -1,0 +1,78 @@
+name: Deploy
+
+# Builds the site on GitHub and ships only the build output to the cPanel
+# server. See DEPLOY.md for the settings this expects.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time; a newer push waits for the running one to finish.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx tsc --noEmit
+
+      - run: npm run lint
+
+      # CMS fetches soft-fail to the local fallback content, so a wrong project
+      # id or a dataset turned private would silently pre-render stale pages.
+      # The dataset is public, so this is queried without a token on purpose.
+      - name: Check Sanity access
+        run: |
+          count="$(curl -sf -G "https://$PROJECT.api.sanity.io/v$VERSION/data/query/$DATASET" \
+            --data-urlencode 'query=count(*[_type == "project"])' | jq -r '.result')"
+          echo "project documents visible: $count"
+          [ "$count" -gt 0 ]
+        env:
+          PROJECT: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
+          VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}
+
+      # NEXT_PUBLIC_* values are baked into the build, so they live in the
+      # repository's Actions variables. Runtime secrets stay on the server.
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+          NEXT_PUBLIC_ALLOW_INDEXING: ${{ vars.NEXT_PUBLIC_ALLOW_INDEXING }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}
+          NEXT_PUBLIC_SANITY_STUDIO_URL: ${{ vars.NEXT_PUBLIC_SANITY_STUDIO_URL }}
+
+      - name: Set up SSH
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+
+      - name: Ship and activate
+        run: DEPLOY_KEY="$HOME/.ssh/deploy_key" ./scripts/deploy.sh
+        env:
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+          APP_NAME: ${{ vars.APP_NAME }}
+          PORT: ${{ vars.APP_PORT }}
