@@ -7,7 +7,6 @@ import { Reveal } from "@/components/motion/reveal";
 import { FaqSection } from "@/components/sections/faq-section";
 import { ProcessTimeline } from "@/components/sections/process-timeline";
 import { ProjectLaunchSection } from "@/components/sections/project-launch-section";
-import { blueprintClientLogos } from "@/content/clients";
 import { getQuoteFormCopy } from "@/content/quote-form.copy";
 import {
   industrySlug,
@@ -243,38 +242,6 @@ export function ServiceArchitecturePage({
               {ar ? "شاهد أعمالنا" : "View Our Work"}
               <CtaArrow tone="white" size="sm" />
             </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="service-trusted">
-        <div className="site-container">
-          <div className="service-trusted-copy">
-            <p className="eyebrow">{ar ? "عملاء يثقون بنا" : "Trusted By"}</p>
-            <h2 className="display">
-              {ar
-                ? "نفّذنا لعلامات رائدة في المملكة"
-                : "Delivered for leading brands in Saudi Arabia"}
-            </h2>
-            <p>
-              {ar
-                ? "نخبة من العملاء الذين نفّذت CPS مشاريعهم."
-                : "A selection of clients CPS has produced for."}
-            </p>
-          </div>
-          <div className="service-trusted-logos">
-            {blueprintClientLogos.map((logo) => (
-              <div key={logo.name} className="service-trusted-logo">
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  width={140}
-                  height={48}
-                  className="object-contain"
-                  unoptimized
-                />
-              </div>
-            ))}
           </div>
         </div>
       </section>

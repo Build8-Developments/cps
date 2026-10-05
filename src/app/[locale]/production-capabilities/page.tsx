@@ -5,7 +5,6 @@ import { CapabilityExplainerSection } from "@/components/sections/capability-exp
 import { BeforeAfterSection } from "@/components/sections/before-after-section";
 import { PageHero } from "@/components/sections/page-hero";
 import { ProductionCapabilitiesSection } from "@/components/sections/production-capabilities-section";
-import { ProductionReassuranceBand } from "@/components/sections/production-reassurance-band";
 import { ProjectLaunchSection } from "@/components/sections/project-launch-section";
 import { WorkshopSection } from "@/components/sections/workshop-section";
 import { media } from "@/content/media";
@@ -75,7 +74,6 @@ export default async function ProductionCapabilitiesPage({ params }: PageProps) 
           standalone
           image={media.services.fabrication}
         />
-        <ProductionReassuranceBand locale={locale} />
         <WorkshopSection
           locale={locale}
           page={dictionary.aboutPage}

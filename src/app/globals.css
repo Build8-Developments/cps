@@ -3295,11 +3295,6 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
   background: rgba(15, 51, 85, 0.11) !important;
 }
 
-/* Compensate fixed overlay header on home */
-.site-shell:has(.site-header.is-overlay) .home-hero-stage {
-  padding-top: 4rem;
-}
-
 .site-footer {
   flex-shrink: 0;
   margin-top: auto;
@@ -4121,92 +4116,107 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
 /* ——— Home ——— */
 
 .home-hero {
-  --hero-cell: 3.4rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
-  min-height: 100dvh;
-  color: #0f3355;
   overflow: hidden;
-  background-color: #ffffff;
-  background-image:
-    linear-gradient(rgba(15, 51, 85, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 51, 85, 0.07) 1px, transparent 1px),
-    radial-gradient(rgba(15, 51, 85, 0.2) 1.25px, transparent 1.6px);
-  background-size:
-    var(--hero-cell) var(--hero-cell),
-    var(--hero-cell) var(--hero-cell),
-    var(--hero-cell) var(--hero-cell);
-  background-position: center;
+  color: #0f3355;
+  background: #ffffff;
 }
 
-.home-hero-background-media {
+/* Tilted wall of project photography; columns drift in opposite directions. */
+.home-hero-gallery {
+  position: relative;
+  order: 2;
+  height: clamp(19rem, 78vw, 27rem);
+  overflow: hidden;
+  animation: hero-gallery-in 900ms ease 150ms both;
+}
+
+@keyframes hero-gallery-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Oversized so the rotation never exposes an edge inside the clip. */
+.home-hero-tilt {
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
+  inset: -22% -8%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  transform: rotate(7deg);
+}
+
+[dir="rtl"] .home-hero-tilt {
+  transform: rotate(-7deg);
+}
+
+.home-hero-track {
+  display: flex;
+  flex-direction: column;
+  animation: hero-column-up 60s linear infinite;
+  will-change: transform;
+}
+
+.home-hero-column:nth-child(2) .home-hero-track {
+  animation-name: hero-column-down;
+  animation-duration: 76s;
+}
+
+.home-hero-column:nth-child(3) .home-hero-track {
+  animation-duration: 68s;
+}
+
+/* Spacing lives on the shot (not a flex gap) so the -50% loop is seamless. */
+.home-hero-shot {
+  position: relative;
+  flex: none;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  background: rgba(15, 51, 85, 0.06);
+  box-shadow: 0 18px 40px rgba(15, 51, 85, 0.12);
+}
+
+.home-hero-shot:nth-child(even) {
+  aspect-ratio: 1;
+}
+
+.home-hero-shot img {
   object-fit: cover;
-  opacity: 0.16;
-  filter: grayscale(1) contrast(1.05);
-  pointer-events: none;
 }
 
-/* White center wash keeps the copy crisp over the floating mosaic. */
-.home-hero::before {
+@keyframes hero-column-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes hero-column-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* White fades keep the wall soft at its edges. */
+.home-hero-gallery::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background: radial-gradient(
-    ellipse 58% 62% at 50% 48%,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.94) 42%,
-    rgba(255, 255, 255, 0.55) 68%,
-    rgba(255, 255, 255, 0) 100%
-  );
   pointer-events: none;
-}
-
-/* The reference uses a clean white canvas without a dark atmosphere layer. */
-.home-hero-atmosphere {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.08),
-    rgba(15, 51, 85, 0.025)
-  );
-}
-
-/* No vignette on the white reference canvas. */
-.home-hero-atmosphere::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: none;
-  backdrop-filter: none;
-}
-
-/* Soft melt into the next section — grid dissolves into the shared white canvas. */
-.home-hero::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  z-index: 4;
-  height: clamp(9rem, 18vw, 13rem);
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.55) 35%,
-    rgba(255, 255, 255, 0.92) 68%,
-    var(--color-section) 100%
-  );
+  background:
+    linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 16%, rgba(255, 255, 255, 0) 84%, #ffffff 100%);
 }
 
 .hero-header {
@@ -4379,190 +4389,18 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
   margin-top: 0.35rem;
 }
 
-.home-hero-stage {
+.home-hero-inner {
   position: relative;
-  z-index: 2;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  /* Extra bottom padding shifts the optical center upward. */
-  padding-block: 0.75rem 6.5rem;
-}
-
-.home-hero-stage::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 52% 58% at 50% 46%,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(255, 255, 255, 0.88) 48%,
-    rgba(255, 255, 255, 0) 78%
-  );
-}
-
-/* Free canvas for the ten handcrafted floating cards */
-.hero-floaters {
-  position: absolute;
-  inset: 0;
   z-index: 1;
-  pointer-events: none;
-  /* Fade image cards out before the hero edge so they don't clip hard. */
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 72%,
-    rgba(0, 0, 0, 0.45) 88%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 72%,
-    rgba(0, 0, 0, 0.45) 88%,
-    transparent 100%
-  );
-}
-
-.hero-image {
-  position: absolute;
-  aspect-ratio: 1;
-  border-radius: 0;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: none;
-  pointer-events: auto;
-  animation: hero-card-reveal 650ms cubic-bezier(0.22, 1, 0.36, 1)
-    var(--image-delay, 850ms) both;
-}
-
-.hero-image-media {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: none;
-  transition: none;
-}
-
-.hero-image:hover .hero-image-media {
-  transform: none;
-  filter: none;
-}
-
-@keyframes hero-card-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(0.75rem) scale(0.92);
-    filter: blur(6px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-/* ——— Desktop: exact Industrious stepped mosaic.
-   4vw → 8vw → 12vw → 8vw → 4vw, with every edge touching. ——— */
-.hero-image-1 {
-  top: 16%;
-  left: 24%;
-  width: 4vw;
-  translate: 0 0;
-  --image-delay: 850ms;
-}
-
-.hero-image-2 {
-  top: calc(16% + 4vw);
-  left: 16%;
-  width: 8vw;
-  translate: 0 0;
-  --image-delay: 1050ms;
-}
-
-.hero-image-3 {
-  top: calc(16% + 12vw);
-  left: 4%;
-  width: 12vw;
-  translate: 0 0;
-  --image-delay: 1250ms;
-}
-
-.hero-image-4 {
-  top: calc(16% + 24vw);
-  left: 16%;
-  width: 8vw;
-  translate: 0 0;
-  --image-delay: 1450ms;
-}
-
-.hero-image-5 {
-  top: calc(16% + 32vw);
-  bottom: auto;
-  left: 24%;
-  width: 4vw;
-  translate: 0 0;
-  --image-delay: 1650ms;
-}
-
-.hero-image-6 {
-  top: 16%;
-  right: 24%;
-  width: 4vw;
-  translate: 0 0;
-  --image-delay: 950ms;
-}
-
-.hero-image-7 {
-  top: calc(16% + 4vw);
-  right: 16%;
-  width: 8vw;
-  translate: 0 0;
-  --image-delay: 1150ms;
-}
-
-.hero-image-8 {
-  top: calc(16% + 12vw);
-  right: 4%;
-  width: 12vw;
-  translate: 0 0;
-  --image-delay: 1350ms;
-}
-
-.hero-image-9 {
-  top: calc(16% + 24vw);
-  right: 16%;
-  width: 8vw;
-  translate: 0 0;
-  --image-delay: 1550ms;
-}
-
-.hero-image-10 {
-  top: calc(16% + 32vw);
-  bottom: auto;
-  right: 24%;
-  width: 4vw;
-  translate: 0 0;
-  --image-delay: 1750ms;
+  order: 1;
+  padding-block: calc(var(--site-header-offset, 5rem) + 2rem) 1.75rem;
 }
 
 .home-hero-copy {
-  position: relative;
-  z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: min(36rem, 92vw);
-  margin-inline: auto;
-  padding-inline: 1.25rem;
+  align-items: flex-start;
+  text-align: start;
   animation: hero-copy-in 720ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
 }
 
@@ -4579,16 +4417,6 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
   }
 }
 
-.home-hero-logo {
-  width: min(100%, 12.5rem);
-  height: auto;
-  margin-bottom: 1rem;
-  filter: none;
-}
-
-.home-hero-logo--icon {
-  display: none;
-}
 
 .home-hero-badge {
   display: flex;
@@ -4631,12 +4459,40 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
   }
 }
 
+
+/* Home hero: the badge reads as a ruled eyebrow, not a pill. */
+.home-hero .home-hero-badge {
+  justify-content: flex-start;
+  gap: 0.7rem;
+  min-height: 0;
+  margin-bottom: 1.25rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: none;
+}
+
+.home-hero .home-hero-badge::before {
+  content: "";
+  flex: none;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--color-cyan);
+}
+
+[dir="rtl"] .home-hero .home-hero-badge {
+  font-size: 0.9rem;
+}
+
 .home-hero-headline {
-  width: 100%;
-  max-width: min(34rem, 100%);
-  font-size: clamp(1.45rem, 3.8vw, 3rem);
+  font-size: clamp(2.1rem, 3.9vw, 3.5rem);
   font-weight: 750;
-  line-height: 1.08;
+  line-height: 1.04;
   letter-spacing: -0.045em;
   color: #0f3355;
 }
@@ -4647,9 +4503,12 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
   text-wrap: balance;
 }
 
+.home-hero-headline-line:not(:first-child):last-child {
+  color: var(--color-accent);
+}
+
 [dir="rtl"] .home-hero-headline {
-  letter-spacing: 0;
-  line-height: 1.35;
+  font-size: clamp(1.8rem, 3.1vw, 2.9rem);
 }
 
 @keyframes hero-rise {
@@ -4663,18 +4522,10 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-image,
-  .home-hero-copy,
-  .home-hero-city {
-    animation: none;
-  }
-}
-
 .home-hero-support {
-  margin-top: 1.1rem;
-  max-width: 30rem;
-  font-size: clamp(1rem, 1.8vw, 1.12rem);
+  margin-top: 1.35rem;
+  max-width: 31rem;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 1.65;
   color: rgba(15, 51, 85, 0.72);
 }
@@ -4682,10 +4533,10 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
 .home-hero-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.75rem;
-  margin-top: 1.85rem;
+  margin-top: 2rem;
 }
+
 
 .hero-cta {
   display: inline-flex;
@@ -4727,336 +4578,83 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
   border-color: rgba(15, 51, 85, 0.5);
 }
 
-/* Compact laptops: keep mosaic clear of the copy column. */
-@media (min-width: 1024px) and (max-width: 1100px) {
-  .home-hero-copy {
-    max-width: 30rem;
-  }
-
-  .home-hero-support {
-    max-width: 22rem;
-  }
-
-  .hero-image-1,
-  .hero-image-6 {
-    width: 3.5vw;
-  }
-
-  .hero-image-2,
-  .hero-image-4,
-  .hero-image-7,
-  .hero-image-9 {
-    width: 7vw;
-  }
-
-  .hero-image-3,
-  .hero-image-8 {
-    width: 10.5vw;
-  }
-
-  .hero-image-1 {
-    left: 20%;
-  }
-
-  .hero-image-2 {
-    left: 12%;
-    top: calc(16% + 3.5vw);
-  }
-
-  .hero-image-3 {
-    left: 2%;
-    top: calc(16% + 10.5vw);
-  }
-
-  .hero-image-4 {
-    left: 12%;
-    top: calc(16% + 21vw);
-  }
-
-  .hero-image-5 {
-    left: 20%;
-    top: calc(16% + 28vw);
-  }
-
-  .hero-image-6 {
-    right: 20%;
-  }
-
-  .hero-image-7 {
-    right: 12%;
-    top: calc(16% + 3.5vw);
-  }
-
-  .hero-image-8 {
-    right: 2%;
-    top: calc(16% + 10.5vw);
-  }
-
-  .hero-image-9 {
-    right: 12%;
-    top: calc(16% + 21vw);
-  }
-
-  .hero-image-10 {
-    right: 20%;
-    top: calc(16% + 28vw);
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-copy,
+  .home-hero-city,
+  .home-hero-gallery,
+  .home-hero-track {
+    animation: none;
   }
 }
 
-/* ——— Tablet / iPad: stepped side stacks, clear of the copy column ——— */
-@media (min-width: 640px) and (max-width: 1023px) {
+/* Desktop: copy on the start side, the wall bleeds off the end edge. */
+@media (min-width: 1024px) {
   .home-hero {
-    --hero-cell: 2.5rem;
-    min-height: auto;
+    flex-direction: row;
+    align-items: center;
+    min-height: clamp(38rem, 100svh, 60rem);
   }
 
-  .home-hero::after {
-    height: 5rem;
+  .home-hero-gallery {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    width: 52%;
+    height: auto;
   }
 
-  .hero-floaters {
-    mask-image: none;
-    -webkit-mask-image: none;
+  .home-hero-tilt {
+    inset: -24% -10% -24% 4%;
+    gap: 1.1rem;
   }
 
-  .home-hero-stage,
-  .site-shell:has(.site-header.is-overlay) .home-hero-stage {
-    min-height: min(100svh, 48rem);
-    padding-block: 5rem 4.5rem;
+  [dir="rtl"] .home-hero-tilt {
+    inset: -24% 4% -24% -10%;
+  }
+
+  .home-hero-shot {
+    margin-bottom: 1.1rem;
+  }
+
+  .home-hero-gallery::after {
+    background:
+      linear-gradient(to bottom, #ffffff 0%, #ffffff 9%, rgba(255, 255, 255, 0) 24%, rgba(255, 255, 255, 0) 86%, #ffffff 100%),
+      linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0) 22%);
+  }
+
+  [dir="rtl"] .home-hero-gallery::after {
+    background:
+      linear-gradient(to bottom, #ffffff 0%, #ffffff 9%, rgba(255, 255, 255, 0) 24%, rgba(255, 255, 255, 0) 86%, #ffffff 100%),
+      linear-gradient(to left, #ffffff 0%, rgba(255, 255, 255, 0) 22%);
+  }
+
+  .home-hero-inner {
+    padding-block: calc(var(--site-header-offset, 5rem) + 1rem) 3rem;
   }
 
   .home-hero-copy {
-    max-width: min(26rem, 54%);
-    padding-inline: 0.5rem;
-  }
-
-  .home-hero-headline {
-    font-size: clamp(1.35rem, 2.9vw, 2.05rem);
-  }
-
-  .hero-image {
-    border-radius: 0;
-    box-shadow: none;
-    opacity: 1;
-  }
-
-  .hero-image-1,
-  .hero-image-2,
-  .hero-image-3,
-  .hero-image-4,
-  .hero-image-5 {
-    right: auto;
-    bottom: auto;
-  }
-
-  .hero-image-6,
-  .hero-image-7,
-  .hero-image-8,
-  .hero-image-9,
-  .hero-image-10 {
-    left: auto;
-    bottom: auto;
-  }
-
-  /* Left staircase */
-  .hero-image-1 {
-    top: 16%;
-    left: 2%;
-    width: clamp(2.75rem, 5.2vw, 3.5rem);
-    translate: 0 0;
-  }
-
-  .hero-image-2 {
-    top: 22%;
-    left: 7.5%;
-    width: clamp(4.25rem, 8vw, 5.5rem);
-    translate: 0 0;
-  }
-
-  .hero-image-3 {
-    top: 36%;
-    left: 1.5%;
-    width: clamp(5.5rem, 11vw, 7rem);
-    translate: 0 0;
-  }
-
-  .hero-image-4 {
-    top: 56%;
-    left: 7.5%;
-    width: clamp(4.25rem, 8vw, 5.5rem);
-    translate: 0 0;
-  }
-
-  .hero-image-5 {
-    top: 72%;
-    left: 11%;
-    width: clamp(2.75rem, 5.2vw, 3.5rem);
-    translate: 0 0;
-  }
-
-  /* Right staircase */
-  .hero-image-6 {
-    top: 16%;
-    right: 2%;
-    width: clamp(2.75rem, 5.2vw, 3.5rem);
-    translate: 0 0;
-  }
-
-  .hero-image-7 {
-    top: 22%;
-    right: 7.5%;
-    width: clamp(4.25rem, 8vw, 5.5rem);
-    translate: 0 0;
-  }
-
-  .hero-image-8 {
-    top: 36%;
-    right: 1.5%;
-    width: clamp(5.5rem, 11vw, 7rem);
-    translate: 0 0;
-  }
-
-  .hero-image-9 {
-    top: 56%;
-    right: 7.5%;
-    width: clamp(4.25rem, 8vw, 5.5rem);
-    translate: 0 0;
-  }
-
-  .hero-image-10 {
-    top: 72%;
-    right: 11%;
-    width: clamp(2.75rem, 5.2vw, 3.5rem);
-    translate: 0 0;
+    max-width: 50%;
   }
 }
 
-/* ——— Phone: one clean top collage only — no bottom images over CTAs ——— */
 @media (max-width: 639px) {
-  .home-hero {
-    --hero-cell: 2.1rem;
-    min-height: auto;
+  .home-hero .home-hero-badge {
+    flex-wrap: nowrap;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
   }
 
-  .home-hero::after {
-    height: 3.5rem;
-  }
-
-  /* Floaters live only in a top strip above the copy */
-  .hero-floaters {
-    inset: 3.6rem 0 auto;
-    height: 8.5rem;
-    mask-image: none;
-    -webkit-mask-image: none;
-    overflow: hidden;
-  }
-
-  .home-hero-stage,
-  .site-shell:has(.site-header.is-overlay) .home-hero-stage {
-    width: 100%;
-    min-height: auto;
-    padding-block: 12.25rem 2.75rem;
-  }
-
-  .home-hero-copy {
-    max-width: 21rem;
-    padding-inline: 1.1rem;
-    z-index: 4;
-  }
-
-  .home-hero-logo {
-    width: min(58%, 8.75rem);
-    margin-bottom: 0.75rem;
-  }
-
-  .home-hero-headline {
-    font-size: clamp(1.2rem, 5.4vw, 1.6rem);
-  }
-
-  .home-hero-support {
-    margin-top: 0.85rem;
-    font-size: 0.92rem;
+  .home-hero .home-hero-badge::before {
+    width: 1.75rem;
   }
 
   .home-hero-actions {
     width: 100%;
-    margin-top: 1.35rem;
   }
 
   .hero-cta,
   .hero-cta-ghost {
     flex: 1 1 auto;
-  }
-
-  .hero-image {
-    border-radius: 0;
-    box-shadow: none;
-    opacity: 1;
-    position: absolute;
-  }
-
-  .hero-image-1,
-  .hero-image-2,
-  .hero-image-3,
-  .hero-image-4,
-  .hero-image-5,
-  .hero-image-6,
-  .hero-image-7,
-  .hero-image-8,
-  .hero-image-9,
-  .hero-image-10 {
-    top: auto;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    translate: 0 0;
-  }
-
-  /*
-   * Six-image top collage (connected, centered).
-   * Bottom-band cards stay hidden so CTAs stay clean.
-   */
-  .hero-image-4,
-  .hero-image-5,
-  .hero-image-9,
-  .hero-image-10 {
-    display: none;
-  }
-
-  .hero-image-1 {
-    top: 0.35rem;
-    left: calc(50% - 8.6rem);
-    width: 3.1rem;
-  }
-
-  .hero-image-2 {
-    top: 2.85rem;
-    left: calc(50% - 6.15rem);
-    width: 3.85rem;
-  }
-
-  .hero-image-3 {
-    top: 0.15rem;
-    left: calc(50% - 2.35rem);
-    width: 4.7rem;
-  }
-
-  .hero-image-7 {
-    top: 2.85rem;
-    left: calc(50% + 2.3rem);
-    width: 3.85rem;
-  }
-
-  .hero-image-6 {
-    top: 0.35rem;
-    left: calc(50% + 5.5rem);
-    width: 3.1rem;
-  }
-
-  .hero-image-8 {
-    top: 5.55rem;
-    left: calc(50% - 1.55rem);
-    width: 3.1rem;
   }
 }
 
@@ -14090,11 +13688,6 @@ button:hover .cta-arrow {
     padding-inline: 0.35rem;
   }
 
-  .home-hero-logo {
-    width: min(72%, 10rem);
-    margin-bottom: 1rem;
-  }
-
   .home-hero-support {
     margin-top: 0.85rem;
     font-size: 0.95rem;
@@ -14184,23 +13777,8 @@ button:hover .cta-arrow {
     width: min(100% - 3rem, 1180px);
   }
 
-  .home-hero-stage {
-    width: min(100% - 3rem, 1180px);
-  }
-
   .footer-menu {
     gap: 1.75rem 1.25rem;
-  }
-}
-
-/* Very small phones: allow soft wrap only if a line would overflow. */
-@media (max-width: 360px) {
-  .home-hero-headline-line {
-    white-space: normal;
-  }
-
-  .home-hero-headline {
-    font-size: clamp(1.2rem, 6.8vw, 1.55rem);
   }
 }
 
@@ -14247,168 +13825,6 @@ button:hover .cta-arrow {
 [dir="rtl"] :is(.eyebrow, .eyebrow-on-dark, .lifecycle-item-step) {
   font-size: 0.84rem;
   line-height: 1.5;
-}
-
-/*
- * Stable hero mosaics for touch layouts.
- * Cards use CSS grids here instead of viewport-dependent absolute offsets.
- */
-@media (min-width: 640px) and (max-width: 1100px) {
-  .home-hero {
-    min-height: auto;
-  }
-
-  .home-hero-stage,
-  .site-shell:has(.site-header.is-overlay) .home-hero-stage {
-    min-height: min(100svh, 48rem);
-    padding-block: 5.5rem 4.5rem;
-  }
-
-  .hero-floaters {
-    inset: 6.5rem 1rem 4.5rem;
-    display: grid;
-    grid-template-columns: 5.5rem 1fr 5.5rem;
-    grid-template-rows: repeat(5, 1fr);
-    align-items: center;
-    mask-image: none;
-    -webkit-mask-image: none;
-  }
-
-  .hero-floaters .hero-image {
-    position: relative;
-    inset: auto;
-    width: 4.25rem;
-    translate: none;
-  }
-
-  .hero-image-1,
-  .hero-image-2,
-  .hero-image-3,
-  .hero-image-4,
-  .hero-image-5 {
-    grid-column: 1;
-    justify-self: start;
-  }
-
-  .hero-image-6,
-  .hero-image-7,
-  .hero-image-8,
-  .hero-image-9,
-  .hero-image-10 {
-    grid-column: 3;
-    justify-self: end;
-  }
-
-  .hero-image-1,
-  .hero-image-6 {
-    grid-row: 1;
-    width: 3rem !important;
-  }
-
-  .hero-image-2,
-  .hero-image-7 {
-    grid-row: 2;
-  }
-
-  .hero-image-3,
-  .hero-image-8 {
-    grid-row: 3;
-    width: 5.5rem !important;
-  }
-
-  .hero-image-4,
-  .hero-image-9 {
-    grid-row: 4;
-  }
-
-  .hero-image-5,
-  .hero-image-10 {
-    grid-row: 5;
-    width: 3rem !important;
-  }
-
-  .home-hero-copy {
-    max-width: min(34rem, calc(100% - 13rem));
-  }
-
-  .home-hero-headline {
-    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
-  }
-
-}
-
-@media (max-width: 639px) {
-  .home-hero {
-    min-height: auto;
-  }
-
-  .home-hero-stage,
-  .site-shell:has(.site-header.is-overlay) .home-hero-stage {
-    min-height: auto;
-    padding-block: 14rem 3.5rem;
-  }
-
-  .hero-floaters {
-    inset: 4.75rem auto auto 50%;
-    display: grid;
-    grid-template-columns: repeat(3, 3.75rem);
-    grid-template-rows: repeat(2, 3.75rem);
-    gap: 0.4rem;
-    width: max-content;
-    height: auto;
-    overflow: visible;
-    transform: translateX(-50%);
-    mask-image: none;
-    -webkit-mask-image: none;
-  }
-
-  .hero-floaters .hero-image {
-    position: relative;
-    inset: auto;
-    display: block !important;
-    width: 3.75rem !important;
-    translate: none;
-    opacity: 1;
-    filter: none;
-    animation: none;
-  }
-
-  .hero-floaters .hero-image:nth-child(n + 7) {
-    display: none !important;
-  }
-
-  .home-hero-copy {
-    width: min(100% - 1.5rem, 22rem);
-    max-width: none;
-    padding-inline: 0;
-  }
-
-  .home-hero-stage::before {
-    display: none;
-  }
-
-  .home-hero-logo--full {
-    display: none;
-  }
-
-  .home-hero-logo--icon {
-    display: block;
-    width: 4.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .home-hero-headline {
-    font-size: clamp(1.05rem, 5.1vw, 1.35rem);
-  }
-
-  .home-hero-headline-line {
-    white-space: nowrap;
-  }
-
-  [dir="rtl"] .home-hero-headline-line {
-    white-space: normal;
-  }
-
 }
 
 /* ——— Unified section rhythm ———

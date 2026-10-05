@@ -111,7 +111,9 @@ Document-level i18n: each content doc has `language: en | ar`.
 - Booth-type 3D models accept GLB/GLTF upload or URL. Booth pages currently show
   a bilingual production brief in place of the old procedural placeholder; the
   source field remains available for the final approved model.
-- Site Settings controls the optional home hero poster/video.
+- Site Settings `homeFloatingImages` lead the home hero's photo wall; local
+  `media.homeHeroGallery` fills the rest. The home hero poster/video fields are
+  not rendered by the hero.
 - Uploaded media is resolved from Sanity's image/file CDN; local URLs remain as a
   safe fallback when CMS media is incomplete.
 

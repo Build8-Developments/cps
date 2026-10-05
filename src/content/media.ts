@@ -40,6 +40,30 @@ const cps = {
 
 export const media = {
   homeHero: cps.home.booth,
+  /** Home hero photo wall — enough shots that no column repeats on screen. */
+  homeHeroGallery: [
+    cps.services.exhibitions,
+    cps.home.booth,
+    cps.services.fitOut,
+    cps.home.activation,
+    cps.services.events,
+    cps.homeCards.installation,
+    cps.home.display,
+    cps.services.retail,
+    cps.about.workshop,
+    cps.services.fabrication,
+    cps.homeCards.rental,
+    cps.home.about,
+    cps.services.printing,
+    cps.homeCards.fitOut,
+    cps.about.craft,
+    cps.services.rental,
+    cps.home.howWeBuild,
+    cps.about.build,
+    cps.services.installation,
+    cps.homeCards.before,
+    cps.home.after,
+  ],
   homeFloating: [
     cps.home.activation,
     cps.home.display,

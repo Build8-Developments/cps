@@ -350,8 +350,8 @@ const dictionaries: Record<Locale, Dictionary> = {
         {
           value: 12,
           suffix: "+",
-          label: "GCC cities",
-          detail: "Riyadh to Dubai and beyond",
+          label: "Cities covered in Saudi Arabia",
+          detail: "Riyadh, Jeddah, Dammam and beyond",
         },
         {
           value: 100,
@@ -691,7 +691,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         },
         {
           title: "Proven delivery",
-          description: "Delivered for leading Saudi brands across banking, telecom and retail.",
+          description: "Delivered for leading Saudi brands across banking, telecom, sports and retail.",
         },
       ],
       primary: {
@@ -737,17 +737,17 @@ const dictionaries: Record<Locale, Dictionary> = {
     faq: {
       eyebrow: "FAQ",
       title: "Questions about CPS",
-      support: "Straight answers on timelines, install, reuse, and coverage — before the brief.",
+      support: "Straight answers on services, timelines and coverage — before the brief.",
       items: [
         {
           question: "What does CPS do?",
           answer:
-            "We design, build, and manage exhibition booths from start to finish — including branding, signage, installation, dismantling, and storage, all in-house.",
+            "We produce exhibitions, events, interiors and retail displays from our own facility — design, fabrication, printing, installation and storage, all in-house.",
         },
         {
           question: "Do I need to use every service, or can I choose just one?",
           answer:
-            "Every service is available individually. You can book just Booth Design, just Fabrication, or the full A to Z Solution if you want everything handled.",
+            "Every service is available individually. You can book a single service — such as exhibition booths, custom fabrication or printing — or hand us the full project from design to install.",
         },
         {
           question: "What cities do you cover?",
@@ -757,7 +757,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         {
           question: "How do I get a quote?",
           answer:
-            "Fill out our quote request form with your event details, or contact us directly — we'll follow up to discuss your project.",
+            "Use the Start a Project form with your event details, or contact us directly — we'll follow up to discuss your project.",
         },
         {
           question: "How far in advance should I book?",
@@ -844,7 +844,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     work: {
       eyebrow: "Our Work",
       title: "Recent work",
-      support: "A look at what has gone out the door recently, across services.",
+      support: "A look at what has gone out the door recently.",
       items: workItems("en"),
       viewAll: "View Our Work",
     },
@@ -996,8 +996,8 @@ const dictionaries: Record<Locale, Dictionary> = {
         {
           value: 12,
           suffix: "+",
-          label: "مدينة خليجية",
-          detail: "من الرياض إلى دبي وما بعدها",
+          label: "مدينة نغطيها في المملكة",
+          detail: "الرياض وجدة والدمام وغيرها",
         },
         {
           value: 100,
@@ -1333,7 +1333,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         },
         {
           title: "خبرة مثبتة",
-          description: "نفّذنا مشاريع لعلامات سعودية رائدة في البنوك والاتصالات والتجزئة.",
+          description: "نفّذنا مشاريع لعلامات سعودية رائدة في البنوك والاتصالات والرياضة والتجزئة.",
         },
       ],
       primary: {
@@ -1379,17 +1379,17 @@ const dictionaries: Record<Locale, Dictionary> = {
     faq: {
       eyebrow: "الأسئلة الشائعة",
       title: "أسئلة عن CPS",
-      support: "إجابات واضحة عن المدد الزمنية والتركيب وإعادة الاستخدام ومناطق التغطية — قبل أن ترسل الموجز.",
+      support: "إجابات واضحة عن الخدمات والمدد الزمنية ومناطق التغطية — قبل أن ترسل الموجز.",
       items: [
         {
           question: "ماذا تقدّم CPS؟",
           answer:
-            "نصمّم أجنحة المعارض ونصنعها وندير تنفيذها من البداية إلى النهاية — بما في ذلك الهوية واللافتات والتركيب والتفكيك والتخزين، وكل ذلك بفريقنا.",
+            "ننفّذ المعارض والفعاليات والمساحات الداخلية ووحدات العرض للتجزئة من مصنعنا — التصميم والتصنيع والطباعة والتركيب والتخزين، وكل ذلك بفريقنا.",
         },
         {
           question: "هل يلزمني طلب جميع الخدمات، أم يمكنني اختيار خدمة واحدة؟",
           answer:
-            "كل خدمة متاحة منفردة. يمكنك طلب تصميم الجناح فقط، أو التصنيع فقط، أو الحل المتكامل إذا أردت أن نتولى المشروع بالكامل.",
+            "كل خدمة متاحة منفردة. يمكنك طلب خدمة واحدة — مثل أجنحة المعارض أو التصنيع حسب الطلب أو الطباعة — أو أن تسلّمنا المشروع كاملاً من التصميم حتى التركيب.",
         },
         {
           question: "ما المدن التي تغطّونها؟",
@@ -1399,7 +1399,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         {
           question: "كيف أحصل على عرض سعر؟",
           answer:
-            "املأ نموذج طلب عرض السعر بتفاصيل فعاليتك، أو تواصل معنا مباشرة، وسنعود إليك لمناقشة مشروعك.",
+            "استخدم نموذج «ابدأ مشروعك» وأدخل تفاصيل فعاليتك، أو تواصل معنا مباشرة، وسنعود إليك لمناقشة مشروعك.",
         },
         {
           question: "كم من الوقت يلزم للحجز قبل الفعالية؟",
@@ -1486,7 +1486,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     work: {
       eyebrow: "أعمالنا",
       title: "أحدث الأعمال",
-      support: "لمحة عن أحدث ما خرج من مصنعنا في مختلف الخدمات.",
+      support: "لمحة عن أحدث ما خرج من مصنعنا.",
       items: workItems("ar"),
       viewAll: "شاهد أعمالنا",
     },

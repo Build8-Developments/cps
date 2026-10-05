@@ -3,12 +3,6 @@ import Link from "next/link";
 import type { Dictionary } from "@/content/dictionaries.local";
 import { media } from "@/content/media";
 import { localizePath, type Locale } from "@/lib/i18n";
-import {
-  getSiteHeroPoster,
-  getSiteHeroVideo,
-  getSiteIcon,
-  getSiteLogo,
-} from "@/lib/site-assets";
 import { getSiteConfig } from "@/lib/site-config";
 import { HeroCityRotator } from "@/components/motion/hero-city-rotator";
 import { CtaArrow } from "@/components/motion/cta-arrow";
@@ -18,65 +12,27 @@ type HomeHeroProps = {
   content: Dictionary["hero"];
 };
 
-type HeroFloatingCardProps = {
-  src: string;
-  className: string;
-};
+const GALLERY_COLUMNS = 3;
 
-/** Shared shell for the floating cards — each card below owns its position class. */
-function HeroFloatingCard({ src, className }: HeroFloatingCardProps) {
+/** One drifting column — the shots render twice so the loop has no seam. */
+function HeroGalleryColumn({ images }: { images: string[] }) {
   return (
-    <div className={`hero-image ${className}`}>
-      <Image
-        src={src}
-        alt=""
-        fill
-        sizes="(max-width: 639px) 72px, (max-width: 1280px) 12vw, 176px"
-        className="hero-image-media object-cover"
-        loading="lazy"
-      />
+    <div className="home-hero-column">
+      <div className="home-hero-track">
+        {[...images, ...images].map((src, index) => (
+          <div key={`${index}-${src}`} className="home-hero-shot">
+            <Image
+              src={src}
+              alt=""
+              fill
+              sizes="(max-width: 1023px) 36vw, 20vw"
+              loading="eager"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
-
-function ImageOne({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-1" />;
-}
-
-function ImageTwo({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-2" />;
-}
-
-function ImageThree({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-3" />;
-}
-
-function ImageFour({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-4" />;
-}
-
-function ImageFive({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-5" />;
-}
-
-function ImageSix({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-6" />;
-}
-
-function ImageSeven({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-7" />;
-}
-
-function ImageEight({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-8" />;
-}
-
-function ImageNine({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-9" />;
-}
-
-function ImageTen({ src }: { src: string }) {
-  return <HeroFloatingCard src={src} className="hero-image-10" />;
 }
 
 function headlineLines(headline: string): string[] {
@@ -99,71 +55,29 @@ function headlineLines(headline: string): string[] {
 
 export function HomeHero({ locale, content }: HomeHeroProps) {
   const lines = headlineLines(content.headline);
-  const heroVideo = getSiteHeroVideo();
-  const heroPoster = getSiteHeroPoster();
-  const floatingImages = getSiteConfig().homeFloatingImages ?? [];
-  const fallbackImages = media.homeFloating;
-  const image = (index: number) => floatingImages[index] || fallbackImages[index];
+  // CMS images lead; local photography fills the wall. Each column needs
+  // enough unique shots that half its track is taller than the hero.
+  const cmsImages = (getSiteConfig().homeFloatingImages ?? []).filter(Boolean);
+  const images = [...new Set([...cmsImages, ...media.homeHeroGallery])].slice(
+    0,
+    media.homeHeroGallery.length,
+  );
+  const columns = Array.from({ length: GALLERY_COLUMNS }, (_, column) =>
+    images.filter((_, index) => index % GALLERY_COLUMNS === column),
+  );
 
   return (
     <section className="home-hero">
-      {heroVideo ? (
-        <video
-          className="home-hero-background-media"
-          src={heroVideo}
-          poster={heroPoster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-        />
-      ) : heroPoster ? (
-        <Image
-          src={heroPoster}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="home-hero-background-media object-cover"
-        />
-      ) : null}
-      <div className="home-hero-atmosphere" aria-hidden="true" />
-
-      <div className="home-hero-stage">
-        <div className="hero-floaters" aria-hidden="true">
-          <ImageOne src={image(0)} />
-          <ImageTwo src={image(1)} />
-          <ImageThree src={image(2)} />
-          <ImageFour src={image(3)} />
-          <ImageFive src={image(4)} />
-          <ImageSix src={image(5)} />
-          <ImageSeven src={image(6)} />
-          <ImageEight src={image(7)} />
-          <ImageNine src={image(8)} />
-          <ImageTen src={image(9)} />
+      <div className="home-hero-gallery" aria-hidden="true">
+        <div className="home-hero-tilt">
+          {columns.map((column, index) => (
+            <HeroGalleryColumn key={index} images={column} />
+          ))}
         </div>
+      </div>
 
+      <div className="site-container home-hero-inner">
         <div className="home-hero-copy">
-          <Image
-            src={getSiteLogo()}
-            alt={
-              locale === "ar"
-                ? "شعار CPS"
-                : "CPS — Creatives Professionals"
-            }
-            width={380}
-            height={135}
-            className="home-hero-logo home-hero-logo--full"
-          />
-          <Image
-            src={getSiteIcon()}
-            alt=""
-            width={512}
-            height={512}
-            unoptimized
-            className="home-hero-logo home-hero-logo--icon"
-          />
           <HeroCityRotator locale={locale} template={content.badge} />
           <h1 className="home-hero-headline">
             {lines.map((line, index) => (

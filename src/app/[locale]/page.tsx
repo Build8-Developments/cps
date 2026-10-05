@@ -70,7 +70,7 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <>
       <HomeHero locale={locale} content={dictionary.hero} />
-      <LogosSection locale={locale} />
+      <ServicesSection locale={locale} content={dictionary.services} />
       <LifecycleSection
         eyebrow={dictionary.lifecycle.eyebrow}
         title={dictionary.lifecycle.title}
@@ -79,7 +79,6 @@ export default async function HomePage({ params }: PageProps) {
         items={dictionary.lifecycle.items}
         centered
       />
-      <ServicesSection locale={locale} content={dictionary.services} />
       <StatsSection
         id="home-stats"
         eyebrow={dictionary.stats.eyebrow}
@@ -88,6 +87,7 @@ export default async function HomePage({ params }: PageProps) {
         items={dictionary.stats.items}
       />
       <ProductionCapabilitiesSection locale={locale} compact />
+      <LogosSection locale={locale} />
       <FeaturedWork
         locale={locale}
         eyebrow={dictionary.work.eyebrow}
