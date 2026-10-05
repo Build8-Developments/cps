@@ -17,7 +17,8 @@ const legacyBoothTypeMap = [
 const nextConfig: NextConfig = {
   // Self-contained server bundle in .next/standalone: CI ships only that
   // (plus .next/static and public/) to the server, never the source. See DEPLOY.md.
-  output: "standalone",
+  // Vercel packages the build itself and fails on standalone output, so skip it there.
+  output: process.env.VERCEL ? undefined : "standalone",
   async redirects() {
     return [
       {
