@@ -355,6 +355,8 @@ export const CLIENTS_QUERY = `*[_type == "client" && language == $locale && stat
   name,
   logo${imageProjection},
   logoUrl,
+  logoMobile${imageProjection},
+  logoMobileUrl,
   order
 }`;
 

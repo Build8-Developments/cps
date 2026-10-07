@@ -683,6 +683,8 @@ export async function loadClients(locale: Locale): Promise<ClientLogo[]> {
       name?: string;
       logo?: { asset?: unknown; alt?: string };
       logoUrl?: string;
+      logoMobile?: { asset?: unknown; alt?: string };
+      logoMobileUrl?: string;
     }[]
   >({
     query: CLIENTS_QUERY,
@@ -695,7 +697,8 @@ export async function loadClients(locale: Locale): Promise<ClientLogo[]> {
       ?.map((item) => {
         const src = toImageSrc(item.logo, item.logoUrl ?? "");
         if (!item.name || !src) return null;
-        return { name: item.name, src };
+        const srcMobile = toImageSrc(item.logoMobile, item.logoMobileUrl ?? "");
+        return { name: item.name, src, ...(srcMobile ? { srcMobile } : {}) };
       })
       .filter((item): item is ClientLogo => Boolean(item)) ?? [];
 

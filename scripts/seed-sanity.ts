@@ -183,6 +183,7 @@ async function seedClients() {
         status: "published",
         name: logo.name,
         logoUrl: logo.src,
+        ...(logo.srcMobile ? { logoMobileUrl: logo.srcMobile } : {}),
         order: index + 1,
       });
     }

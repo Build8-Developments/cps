@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ClientLogoImage } from "@/components/ui/client-logo";
 import {
   logosEyebrow,
   logosSupport,
@@ -44,14 +44,10 @@ export async function LogosSection({
               className="logos-item"
               aria-hidden={index >= items.length}
             >
-              <Image
-                src={logo.src}
+              <ClientLogoImage
+                logo={logo}
                 alt={index < items.length ? logo.name : ""}
-                width={180}
-                height={56}
                 className="logos-image"
-                loading="lazy"
-                unoptimized
               />
             </li>
           ))}

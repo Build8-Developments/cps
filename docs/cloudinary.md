@@ -64,3 +64,11 @@ their service image until matching assets are uploaded:
 - `custom-fabrication:display-units`
 - `custom-fabrication:decorative-structures`
 - `custom-fabrication:product-displays`
+
+## Client logos
+
+The `CPS Website/logos` folder holds the client-supplied Trusted By set in two
+sizes: `Desktop` (136×48) and `Mobile` (120×44). `src/content/clients.ts` is the
+local fallback, and the Sanity `client` documents carry the same links in
+`logoUrl` (desktop) and `logoMobileUrl` (phone). `ClientLogoImage` renders a
+`<picture>` that swaps to the phone artwork below 768px.

@@ -4739,10 +4739,16 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
   padding-inline: 0.5rem;
 }
 
+/* Let the art-directed <picture> wrapper drop out so the <img> stays the flex item. */
+.logos-item picture {
+  display: contents;
+}
+
+/* Supplied logo artwork: 120×44 on phones, 136×48 from 768px up. */
 .logos-image {
   display: block;
   width: auto;
-  height: 2.35rem;
+  height: 2.75rem;
   max-width: 11rem;
   object-fit: contain;
   opacity: 0.82;
@@ -4763,7 +4769,7 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
   }
 
   .logos-image {
-    height: 2.85rem;
+    height: 3rem;
     max-width: 13rem;
   }
 }
