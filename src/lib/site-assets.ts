@@ -3,7 +3,7 @@ const LOGO_FALLBACK = "/logo.png";
 const ICON_FALLBACK = "/icon.png";
 const FAVICON_FALLBACK = "/favicon.ico";
 const OG_FALLBACK =
-  "https://res.cloudinary.com/jivfgunl/image/upload/c_fill,g_auto,w_1200,h_630,q_auto,f_auto/v1789398995/Top_Exhibition_Booths.png";
+  "https://res.cloudinary.com/jivfgunl/image/upload/c_fill,g_auto,w_1200,h_630,q_auto,f_auto/v1791383289/Exhibitions_booths.jpg";
 
 export function getSiteLogo(): string {
   return getSiteConfig().logo || LOGO_FALLBACK;
