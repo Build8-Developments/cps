@@ -139,6 +139,7 @@ export async function POST(request: Request) {
   if (!name) errors.name = "required";
   if (isRoleInquiry) {
     if (phone.replace(/\D/g, "").length < 6) errors.phone = "required";
+    if (email && !isValidEmail(email)) errors.email = "email";
     if (!clean(payload.country, 160)) errors.country = "required";
     if (payload.inquiryOption === "client" && !clean(payload.eventType, 250)) {
       errors.eventType = "required";

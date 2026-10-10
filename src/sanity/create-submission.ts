@@ -22,7 +22,7 @@ export async function createBriefSubmission(input: {
     submittedAt: new Date().toISOString(),
     locale,
     fullName: data.fullName.trim(),
-    email: data.email.trim(),
+    email: optional(data.email),
     phone: data.phone.trim(),
     jobTitle: optional(data.jobTitle),
     userType: data.userType || undefined,

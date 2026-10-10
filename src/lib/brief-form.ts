@@ -111,8 +111,9 @@ export function validateBriefStep(
   if (step === 0) {
     if (!data.userType) errors.userType = "required";
     if (!data.fullName.trim()) errors.fullName = "required";
-    if (!data.email.trim()) errors.email = "required";
-    else if (!EMAIL_RE.test(data.email.trim())) errors.email = "email";
+    if (!data.email.trim()) {
+      if (data.preferredContact === "email") errors.email = "required";
+    } else if (!EMAIL_RE.test(data.email.trim())) errors.email = "email";
     if (!data.phone.trim()) errors.phone = "required";
     if (!data.preferredContact) errors.preferredContact = "required";
   }
@@ -156,7 +157,7 @@ export function formatBriefPlainText(data: BriefFormData, locale: string): strin
     `Type: ${data.userType}`,
     `Name: ${data.fullName}`,
     `Title: ${data.jobTitle || "—"}`,
-    `Email: ${data.email}`,
+    `Email: ${data.email || "—"}`,
     `Phone: ${data.phone}`,
     `Preferred contact: ${data.preferredContact}`,
     "",

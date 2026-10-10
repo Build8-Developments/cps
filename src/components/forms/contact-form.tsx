@@ -26,6 +26,7 @@ export function ContactForm({ locale }: { locale: Locale }) {
     const data = new FormData(form);
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
     const country = String(data.get("country") ?? "").trim();
     const cvUrl = String(data.get("cvUrl") ?? "").trim();
     const otherEventType = String(data.get("otherEventType") ?? "").trim();
@@ -43,6 +44,11 @@ export function ContactForm({ locale }: { locale: Locale }) {
           ? copy.errors.phone
           : copy.errors.required,
       );
+      return;
+    }
+
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError(copy.errors.email);
       return;
     }
 
@@ -145,7 +151,20 @@ export function ContactForm({ locale }: { locale: Locale }) {
             required
           />
         </label>
-        <label className="brief-field brief-field--full">
+        <label className="brief-field">
+          <span className="brief-label">
+            {copy.labels.email} <small>{copy.optional}</small>
+          </span>
+          <input
+            className="brief-control"
+            name="email"
+            type="email"
+            dir="ltr"
+            autoComplete="email"
+            placeholder={copy.placeholders.email}
+          />
+        </label>
+        <label className="brief-field">
           <span className="brief-label">{copy.labels.country}</span>
           <select className="brief-control" name="country" defaultValue="" required>
             <option value="" disabled>{copy.placeholders.country}</option>
