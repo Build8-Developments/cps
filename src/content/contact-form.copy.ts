@@ -9,7 +9,7 @@ export type ContactFormCopy = {
   inquiryLabel: string;
   inquiryOptions: { value: ContactInquiryOption; label: string }[];
   labels: Record<
-    | "name" | "companyName" | "phone" | "country" | "eventType"
+    | "name" | "companyName" | "phone" | "email" | "country" | "eventType"
     | "otherEventType" | "cvUrl" | "notes" | "commercial"
     | "commercialRegister" | "vatNumber" | "websiteSocial"
     | "nationalAddress" | "authorizedPersonName" | "documents"
@@ -19,7 +19,7 @@ export type ContactFormCopy = {
     string
   >;
   placeholders: Record<
-    "name" | "companyName" | "phone" | "country" | "otherEventType" | "cvUrl" | "notes",
+    "name" | "companyName" | "phone" | "email" | "country" | "otherEventType" | "cvUrl" | "notes",
     string
   >;
   countries: string[];
@@ -31,7 +31,7 @@ export type ContactFormCopy = {
   submitting: string;
   successTitle: string;
   successMessage: string;
-  errors: { required: string; phone: string; submit: string; fileTooLarge: string };
+  errors: { required: string; phone: string; email: string; submit: string; fileTooLarge: string };
 };
 
 const en: ContactFormCopy = {
@@ -45,7 +45,8 @@ const en: ContactFormCopy = {
     { value: "partner", label: "Partner / supplier" },
   ],
   labels: {
-    name: "Full name", companyName: "Company name", phone: "Phone number", country: "Country",
+    name: "Full name", companyName: "Company name", phone: "Phone number", email: "Email",
+    country: "Country",
     eventType: "What are you planning?", otherEventType: "Tell us what you’re planning",
     cvUrl: "CV / portfolio link", notes: "Notes", commercial: "Commercial details",
     commercialRegister: "Commercial register", vatNumber: "VAT number",
@@ -57,7 +58,7 @@ const en: ContactFormCopy = {
   },
   placeholders: {
     name: "Your full name", companyName: "Your company name", phone: "+966 5X XXX XXXX",
-    country: "Select a country", otherEventType: "Describe the project or event",
+    email: "name@company.com", country: "Select a country", otherEventType: "Describe the project or event",
     cvUrl: "https://…", notes: "Anything else we should know?",
   },
   countries: ["Saudi Arabia", "United Arab Emirates", "Qatar", "Kuwait", "Bahrain", "Oman", "Egypt", "Other"],
@@ -71,6 +72,7 @@ const en: ContactFormCopy = {
   successMessage: "Thank you — our team will review it and get back to you.",
   errors: {
     required: "Complete the required fields.", phone: "Enter a valid phone number.",
+    email: "Enter a valid email address.",
     submit: "We could not send your inquiry. Please try again.", fileTooLarge: "Each file must be under 10MB.",
   },
 };
@@ -86,7 +88,8 @@ const ar: ContactFormCopy = {
     { value: "partner", label: "شريكاً / مورداً" },
   ],
   labels: {
-    name: "الاسم الكامل", companyName: "اسم الشركة", phone: "رقم الجوال", country: "الدولة",
+    name: "الاسم الكامل", companyName: "اسم الشركة", phone: "رقم الجوال", email: "البريد الإلكتروني",
+    country: "الدولة",
     eventType: "ما الذي تخطط له؟", otherEventType: "صف ما تخطط له",
     cvUrl: "رابط السيرة الذاتية / نماذج الأعمال", notes: "ملاحظات", commercial: "البيانات التجارية",
     commercialRegister: "السجل التجاري", vatNumber: "الرقم الضريبي",
@@ -98,7 +101,7 @@ const ar: ContactFormCopy = {
   },
   placeholders: {
     name: "اسمك الكامل", companyName: "اسم الشركة أو الجهة", phone: "+966 5X XXX XXXX",
-    country: "اختر الدولة", otherEventType: "صف المشروع أو الفعالية",
+    email: "name@company.com", country: "اختر الدولة", otherEventType: "صف المشروع أو الفعالية",
     cvUrl: "https://…", notes: "أي تفاصيل أخرى ينبغي أن نعرفها؟",
   },
   countries: ["المملكة العربية السعودية", "الإمارات العربية المتحدة", "قطر", "الكويت", "البحرين", "عُمان", "مصر", "أخرى"],
@@ -112,6 +115,7 @@ const ar: ContactFormCopy = {
   successMessage: "شكراً لك. سيراجع فريقنا استفسارك ويتواصل معك قريباً.",
   errors: {
     required: "يرجى إكمال الحقول المطلوبة.", phone: "يرجى إدخال رقم جوال صحيح.",
+    email: "يرجى إدخال بريد إلكتروني صحيح.",
     submit: "تعذّر إرسال الاستفسار. يرجى المحاولة مرة أخرى.", fileTooLarge: "يجب ألا يتجاوز حجم الملف الواحد 10MB.",
   },
 };

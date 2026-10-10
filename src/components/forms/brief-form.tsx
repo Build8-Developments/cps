@@ -241,7 +241,7 @@ export function BriefForm({
                 onChange={(event) => setField("email", event.target.value)}
                 placeholder={copy.placeholders.email}
                 autoComplete="email"
-                required
+                required={data.preferredContact === "email"}
               />
             </BriefField>
 
