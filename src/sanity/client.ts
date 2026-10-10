@@ -14,9 +14,7 @@ export const sanityClient = isSanityConfigured()
       apiVersion: sanityApiVersion,
       useCdn: true,
       token: sanityReadToken,
-      stega: {
-        enabled: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL !== undefined,
-        studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
-      },
+      // Public pages must never carry stega edit markers; see the draft client in fetch.ts.
+      stega: false,
     })
   : null;

@@ -8,6 +8,7 @@ import {
   sanityApiVersion,
   sanityDataset,
   sanityProjectId,
+  sanityStudioUrl,
 } from "./env";
 
 const fetchSanityQuery = cache(
@@ -31,6 +32,7 @@ const fetchSanityQuery = cache(
             useCdn: false,
             token: sanityReadToken,
             perspective: "previewDrafts",
+            stega: { enabled: Boolean(sanityStudioUrl), studioUrl: sanityStudioUrl },
           })
         : sanityClient;
 

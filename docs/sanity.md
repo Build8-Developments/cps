@@ -196,6 +196,7 @@ Tags include: `siteSettings`, `dictionary`, `notFoundPage`, page singletons (`ho
 - Enable: `GET /api/draft?secret=...&slug=/en/services/exhibitions-booths`
 - Disable: `GET /api/draft/disable?redirect=/en`
 - When draft mode is on, `sanityFetch` uses `perspective=previewDrafts` (needs read token)
+- Stega edit markers are added only in draft mode, and only when `NEXT_PUBLIC_SANITY_STUDIO_URL` is set; the public client never emits them
 
 ## Redirects
 

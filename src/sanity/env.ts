@@ -5,6 +5,8 @@ export const sanityDataset =
 export const sanityApiVersion =
   process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? "2025-01-01";
 export const sanityReadToken = process.env.SANITY_API_READ_TOKEN;
+export const sanityStudioUrl =
+  process.env.NEXT_PUBLIC_SANITY_STUDIO_URL?.trim() || undefined;
 
 export function isSanityConfigured(): boolean {
   return Boolean(sanityProjectId && sanityDataset);
