@@ -3,12 +3,14 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import type { Dictionary } from "@/content/dictionaries.local";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/motion/reveal";
 
 const DIVIDER_POSITION = 50;
 const MARQUEE_LOOPS = 4;
 
 type BeforeAfterSectionProps = {
+  locale: Locale;
   content: Dictionary["beforeAfter"];
   brandIcon?: string;
 };
@@ -82,10 +84,12 @@ function MarqueeTrack({
 }
 
 function TransformMarquee({
+  locale,
   beforeItems,
   afterItems,
   brandIcon,
 }: {
+  locale: Locale;
   beforeItems: string[];
   afterItems: string[];
   brandIcon: string;
@@ -111,13 +115,16 @@ function TransformMarquee({
       </div>
 
       <span className="sr-only">
-        Before: {beforeItems.join(", ")}. After: {afterItems.join(", ")}.
+        {locale === "ar"
+          ? `قبل التطوير: ${beforeItems.join("، ")}. بعد التطوير: ${afterItems.join("، ")}.`
+          : `Before: ${beforeItems.join(", ")}. After: ${afterItems.join(", ")}.`}
       </span>
     </div>
   );
 }
 
 function BeforeAfterSlider({
+  locale,
   beforeVideo,
   afterVideo,
   beforePoster,
@@ -126,6 +133,7 @@ function BeforeAfterSlider({
   afterItems,
   brandIcon,
 }: {
+  locale: Locale;
   beforeVideo?: string;
   afterVideo?: string;
   beforePoster: string;
@@ -141,7 +149,11 @@ function BeforeAfterSlider({
       dir="ltr"
       className="ba-slider"
       role="img"
-      aria-label="Before and after booth comparison"
+      aria-label={
+        locale === "ar"
+          ? "مقارنة الجناح قبل التطوير وبعده"
+          : "Before and after booth comparison"
+      }
     >
       <div className="ba-slider-layer">
         <ComparisonMedia videoSrc={afterVideo} poster={afterPoster} />
@@ -159,6 +171,7 @@ function BeforeAfterSlider({
       </div>
 
       <TransformMarquee
+        locale={locale}
         beforeItems={beforeItems}
         afterItems={afterItems}
         brandIcon={brandIcon}
@@ -174,6 +187,7 @@ function BeforeAfterSlider({
 }
 
 export function BeforeAfterSection({
+  locale,
   content,
   brandIcon = "/icon.png",
 }: BeforeAfterSectionProps) {
@@ -193,6 +207,7 @@ export function BeforeAfterSection({
         <Reveal delay={0.08}>
           <div className="ba-slider-wrap">
             <BeforeAfterSlider
+              locale={locale}
               beforeVideo={content.beforeVideo}
               afterVideo={content.afterVideo}
               beforePoster={content.beforeImage}

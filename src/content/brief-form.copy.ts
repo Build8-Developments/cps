@@ -320,10 +320,10 @@ const ar: BriefFormCopy = {
     ],
     services: [
       { value: "exhibitions-booths", label: "المعارض والأجنحة" },
-      { value: "event-fabrication", label: "تصنيع وتجهيز الفعاليات" },
+      { value: "event-fabrication", label: "تصنيع تجهيزات الفعاليات" },
       { value: "fit-out-interiors", label: "التجهيزات الداخلية" },
-      { value: "retail-displays", label: "وحدات العرض ونقاط البيع" },
-      { value: "custom-fabrication", label: "التصنيع المخصص" },
+      { value: "retail-displays", label: "وحدات عرض المنتجات" },
+      { value: "custom-fabrication", label: "التصنيع حسب الطلب" },
       { value: "printing-signage", label: "الطباعة واللافتات" },
       { value: "rental-solutions", label: "حلول التأجير" },
       { value: "installation-project-delivery", label: "التركيب وتسليم المشاريع" },

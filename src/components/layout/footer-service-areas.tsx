@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { arabicCount } from "@/lib/arabic-format";
 import { localizePath, type Locale } from "@/lib/i18n";
 import { locationServicePath } from "@/lib/locations";
 import "./footer-service-areas.css";
@@ -42,9 +43,13 @@ function formatCityCount(count: number, total: number, locale: Locale) {
       ? `${total} ${total === 1 ? "city" : "cities"}`
       : `${count} of ${total} cities`;
   }
-  const noun = (n: number) =>
-    n === 1 ? "مدينة واحدة" : n === 2 ? "مدينتان" : n <= 10 ? `${n} مدن` : `${n} مدينة`;
-  return count === total ? noun(total) : `${count} من ${total}`;
+  if (count !== total) return `${count} من ${total}`;
+  return arabicCount(total, {
+    one: "مدينة أو منطقة واحدة",
+    two: "مدينتان أو منطقتان",
+    few: "مدن ومناطق",
+    many: "مدينة ومنطقة",
+  });
 }
 
 /**

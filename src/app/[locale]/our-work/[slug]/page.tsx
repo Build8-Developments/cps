@@ -9,6 +9,7 @@ import {
 } from "@/components/sections/project-detail-sections";
 import { formatBoothTypeTitle } from "@/content/catalog";
 import { getServiceArchitecture, localizeText, projectIndustryOptions } from "@/content/service-architecture";
+import { localizeProjectSize } from "@/lib/arabic-format";
 import { isLocale, localizePath, type Locale } from "@/lib/i18n";
 import { buildPageMetadata } from "@/lib/cms-seo";
 import { resolveDictionary } from "@/lib/dictionary";
@@ -194,7 +195,9 @@ export default async function ProjectPage({ params }: PageProps) {
         lead={project.summary}
         image={project.image}
         imageAlt={project.imageAlt}
-        meta={[project.year, project.event, project.size].filter(Boolean).join(" · ")}
+        meta={[project.year, project.event, localizeProjectSize(project.size, locale)]
+          .filter(Boolean)
+          .join(" · ")}
         cta={{
           label: dictionary.nav.cta,
           href: localizePath("/contact", locale),
@@ -206,7 +209,7 @@ export default async function ProjectPage({ params }: PageProps) {
         project={detail}
         labels={{
           ...labels,
-          approach: locale === "ar" ? "حلّ CPS" : "CPS Solution",
+          approach: locale === "ar" ? "الحل والتنفيذ" : "CPS Solution",
         }}
         relatedProjects={relatedProjects}
       />

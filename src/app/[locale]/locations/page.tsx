@@ -60,7 +60,7 @@ export default async function LocationsPage({ params }: PageProps) {
       />
       <CollectionGrid
         columns={3}
-        eyebrow={locale === "ar" ? "المدن التي نغطيها" : "City coverage"}
+        eyebrow={locale === "ar" ? "المدن والمناطق التي نخدمها" : "City coverage"}
         title={
           locale === "ar"
             ? "تنفيذ محلي بالمعايير نفسها في كل مدينة"

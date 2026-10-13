@@ -8,6 +8,7 @@ export type Project = {
   year: string;
   image: string;
   imageAlt: string;
+  imageAltAr?: string;
   gallery: string[];
   motionVideo?: string;
   industrySlug?: string;
@@ -16,6 +17,7 @@ export type Project = {
   boothTypeSlug?: string;
   locationSlug?: string;
   event?: string;
+  eventAr?: string;
   size?: string;
   technologies?: string[];
   featured?: boolean;
@@ -278,7 +280,8 @@ export function getLocalizedProject(project: Project, locale: "en" | "ar") {
     slug: project.slug,
     year: project.year,
     image: project.image,
-    imageAlt: project.imageAlt,
+    imageAlt: (locale === "ar" && project.imageAltAr) || project.imageAlt,
+    event: (locale === "ar" && project.eventAr) || project.event,
     gallery: project.gallery,
     clientName: project.clientName?.[locale],
     ...project[locale],

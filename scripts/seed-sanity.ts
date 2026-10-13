@@ -484,7 +484,7 @@ async function seedProjects() {
         solution: loc.approach,
         result: loc.outcome,
         technologies: project.technologies ?? [],
-        event: project.event,
+        event: (locale === "ar" && project.eventAr) || project.event,
         size: project.size,
         clientName: project.clientName?.[locale],
         serviceSlug: project.serviceSlug,

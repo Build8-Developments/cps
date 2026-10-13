@@ -122,7 +122,7 @@ export function buildServiceLocationPage(
     : `${serviceSupport} Available in ${location.title}, designed, built, and delivered by CPS.`;
 
   const overview = isArabic
-    ? `${localizeText(serviceRecord.excerpt, locale)} نقدّم هذه الخدمة في ${location.title} مع تنسيق محلي للوجستيات ومواقع المعارض ومواعيد التركيب. ${location.localExperience}`
+    ? `${localizeText(serviceRecord.excerpt, locale)} نقدّم هذه الخدمة في ${location.title} مع تنسيق محلي للخدمات اللوجستية والموقع ومواعيد التركيب. ${location.localExperience}`
     : `${localizeText(serviceRecord.excerpt, locale)} We deliver this service in ${location.title} with local logistics, venue coordination, and install planning. ${location.localExperience}`;
 
   const firstBenefit = serviceRecord.benefits[0]
@@ -163,7 +163,7 @@ export function buildServiceLocationPage(
     },
     {
       question: isArabic
-        ? "ما المدة المعتادة من استلام الموجز حتى التسليم؟"
+        ? "ما المدة المعتادة من استلام متطلبات المشروع حتى التسليم؟"
         : "What is a typical timeline from brief to delivery?",
       answer: isArabic
         ? "تعتمد على حجم المشروع وموعد المعرض أو الفعالية، ونحدد منذ اليوم الأول مراحل واضحة للتصميم والتصنيع والتركيب."

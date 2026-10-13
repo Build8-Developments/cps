@@ -98,6 +98,7 @@ export default async function HomePage({ params }: PageProps) {
       />
       <WhyCpsSection locale={locale} content={dictionary.whyCps} />
       <BeforeAfterSection
+        locale={locale}
         content={dictionary.beforeAfter}
         brandIcon={getSiteIcon()}
       />

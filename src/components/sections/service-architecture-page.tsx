@@ -8,6 +8,7 @@ import { FaqSection } from "@/components/sections/faq-section";
 import { ProcessTimeline } from "@/components/sections/process-timeline";
 import { ProjectLaunchSection } from "@/components/sections/project-launch-section";
 import { getQuoteFormCopy } from "@/content/quote-form.copy";
+import { arabicCount } from "@/lib/arabic-format";
 import {
   industrySlug,
   localizeText,
@@ -383,7 +384,14 @@ export function ServiceArchitecturePage({
                   </span>
                   {totalCatalogueItems > 0 ? (
                     <span className="service-showcase-count-pill">
-                      +{totalCatalogueItems} {ar ? "عنصراً" : "Capabilities"}
+                      {ar
+                        ? arabicCount(totalCatalogueItems, {
+                            one: "عنصر واحد",
+                            two: "عنصران",
+                            few: "عناصر",
+                            many: "عنصرًا",
+                          })
+                        : `+${totalCatalogueItems} Capabilities`}
                     </span>
                   ) : null}
                 </div>
@@ -547,7 +555,7 @@ export function ServiceArchitecturePage({
 
       <ProcessTimeline
         eyebrow={ar ? "كيف نعمل" : "How We Work"}
-        title={ar ? "من الموجز إلى التسليم" : "From brief to handover"}
+        title={ar ? "من تحديد المتطلبات إلى التسليم" : "From brief to handover"}
         support={
           ar
             ? "خمس خطوات ثابتة نتّبعها في كل مشروع، أيّاً كانت الخدمة."
@@ -711,7 +719,7 @@ export function ServiceArchitecturePage({
       </section> : null}
 
       <FaqSection
-        eyebrow="FAQ"
+        eyebrow={ar ? "الأسئلة الشائعة" : "FAQ"}
         title={
           ar
             ? `أسئلة عن ${localizeText(service.title, locale)}`

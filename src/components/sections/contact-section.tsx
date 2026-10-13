@@ -1,6 +1,11 @@
 import type { Dictionary } from "@/content/dictionaries.local";
 import type { Locale } from "@/lib/i18n";
-import { getMailtoUrl, getSiteConfig, getWhatsAppUrl } from "@/lib/site-config";
+import {
+  formatSiteAddress,
+  getMailtoUrl,
+  getSiteConfig,
+  getWhatsAppUrl,
+} from "@/lib/site-config";
 import { Reveal } from "@/components/motion/reveal";
 import { CtaArrow } from "@/components/motion/cta-arrow";
 
@@ -55,9 +60,7 @@ export function ContactSection({ locale, content }: ContactSectionProps) {
                 </a>
                 <div className="contact-card">
                   <span className="contact-card-label">{placeLabel}</span>
-                  <span className="contact-card-value">
-                    {config.address.city}, {config.address.countryName}
-                  </span>
+                  <span className="contact-card-value">{formatSiteAddress(locale)}</span>
                 </div>
               </div>
             </div>

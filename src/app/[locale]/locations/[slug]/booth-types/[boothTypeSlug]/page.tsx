@@ -135,7 +135,7 @@ export default async function LocationBoothTypePage({ params }: PageProps) {
   });
 
   const homeLabel = locale === "ar" ? "الرئيسية" : "Home";
-  const locationsLabel = locale === "ar" ? "المواقع" : "Locations";
+  const locationsLabel = locale === "ar" ? "مناطق خدمتنا" : "Locations";
   const hubLabel = locale === "ar" ? "أنواع الأجنحة" : "Booth Types";
   const briefHref = `#location-booth-${slug}-${boothTypeSlug}-brief`;
   const overviewTitle =

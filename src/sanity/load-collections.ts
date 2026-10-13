@@ -196,7 +196,7 @@ function localProject(project: Project, locale: Locale): CmsProject {
     gallery: localized.gallery,
     motionVideo: project.motionVideo,
     technologies: project.technologies ?? [],
-    event: sanitizeText(project.event),
+    event: sanitizeText(localized.event),
     size: project.size,
     industrySlug: project.industrySlug,
     serviceSlug: project.serviceSlug,

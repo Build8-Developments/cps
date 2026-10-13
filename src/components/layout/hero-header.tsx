@@ -51,7 +51,7 @@ export function HeroHeader({ locale, nav }: HeroHeaderProps) {
           <span className="hero-brand-text">CPS</span>
         </Link>
 
-        <nav className="hero-nav" aria-label="Primary">
+        <nav className="hero-nav" aria-label={locale === "ar" ? "التنقل الرئيسي" : "Primary"}>
           {nav.items.map((item) => {
             const href = localizePath(item.href, locale);
             const active =
@@ -99,7 +99,11 @@ export function HeroHeader({ locale, nav }: HeroHeaderProps) {
             className="hero-menu-toggle"
             aria-expanded={open}
             aria-controls="hero-mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={
+              locale === "ar"
+                ? open ? "أغلق القائمة" : "افتح القائمة"
+                : open ? "Close menu" : "Open menu"
+            }
             onClick={() => setOpen((value) => !value)}
           >
             <span className="sr-only">Menu</span>

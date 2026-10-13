@@ -4,6 +4,7 @@ import { CollectionGrid } from "@/components/sections/collection-grid";
 import { InnerPageEngagement } from "@/components/sections/inner-page-engagement";
 import { PageHero } from "@/components/sections/page-hero";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { localizeNewsCategory } from "@/content/catalog";
 import { isLocale, localizePath, type Locale } from "@/lib/i18n";
 import { buildPageMetadata } from "@/lib/cms-seo";
 import { resolveDictionary } from "@/lib/dictionary";
@@ -72,7 +73,7 @@ export default async function NewsPage({ params }: PageProps) {
           excerpt: article.excerpt,
           image: article.image,
           imageAlt: article.imageAlt,
-          meta: `${article.category}${article.publishedAt ? ` · ${new Date(article.publishedAt).toLocaleDateString(locale)}` : ""}`,
+          meta: `${localizeNewsCategory(article.category, locale)}${article.publishedAt ? ` · ${new Date(article.publishedAt).toLocaleDateString(locale)}` : ""}`,
         }))}
       />
       <InnerPageEngagement

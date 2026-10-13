@@ -57,6 +57,11 @@ for those pages comes from `CPS_Catalogue_Detail_Page_Content.xlsx` and is
 checked into `src/content/catalogue-detail-content.generated.ts` so production
 builds do not need to read an Excel workbook or call the Cloudinary Admin API.
 
+Arabic copy for the same pages is checked into
+`src/content/catalogue-detail-content.ar.generated.ts` (from the «تعريب الكتالوج»
+sheet of `CPS_Arabic_Review_2026-10-13.xlsx`), keyed identically; the detail page
+falls back to English per field when an Arabic entry is missing.
+
 The workbook defines 122 catalogue items. Cloudinary currently supplies 119
 matching product images. These three Custom Fabrication items intentionally use
 their service image until matching assets are uploaded:

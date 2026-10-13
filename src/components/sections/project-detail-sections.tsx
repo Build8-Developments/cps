@@ -5,6 +5,7 @@ import { ProjectMotionSection } from "@/components/sections/project-motion-secti
 import { CtaArrow } from "@/components/motion/cta-arrow";
 import { Reveal } from "@/components/motion/reveal";
 import { getServiceArchitecture, localizeText, projectIndustryOptions } from "@/content/service-architecture";
+import { arabicCount, isDateOnlyEvent, localizeProjectSize } from "@/lib/arabic-format";
 import { localizePath, type Locale } from "@/lib/i18n";
 
 export type ProjectDetailItem = {
@@ -99,10 +100,18 @@ export function ProjectDetailSections({
         }
       : null,
     project.event
-      ? { label: isArabic ? "الفعالية" : "Event", value: project.event }
+      ? {
+          label: isDateOnlyEvent(project.event)
+            ? isArabic ? "تاريخ التنفيذ" : "Date"
+            : isArabic ? "الفعالية" : "Event",
+          value: project.event,
+        }
       : null,
     project.size
-      ? { label: isArabic ? "المساحة" : "Size", value: project.size }
+      ? {
+          label: isArabic ? "الأبعاد" : "Size",
+          value: localizeProjectSize(project.size, locale) ?? project.size,
+        }
       : null,
   ].filter(Boolean) as { label: string; value: string; note?: string }[];
 
@@ -171,11 +180,11 @@ export function ProjectDetailSections({
           poster={project.image}
           images={project.gallery}
           videoSrc={project.motionVideo}
-          eyebrow={isArabic ? "أبرز لحظات الفعالية" : "EVENT HIGHLIGHT"}
-          heading={isArabic ? "لمحة من الفعالية" : "A Look Back at the Event"}
+          eyebrow={isArabic ? "أبرز تفاصيل المشروع" : "EVENT HIGHLIGHT"}
+          heading={isArabic ? "لمحة عن المشروع" : "A Look Back at the Event"}
           support={
             isArabic
-              ? "أبرز اللحظات والتفاصيل التي صنعت تجربة الفعالية."
+              ? "لقطات من المشروع وتفاصيل تنفيذه."
               : "Relive the moments, experiences, and highlights that made it unforgettable."
           }
         />
@@ -227,12 +236,15 @@ export function ProjectDetailSections({
                   {isArabic ? "صور المشروع" : "Project gallery."}
                 </h2>
                 <p className="project-detail-gallery-count">
-                  {gallery.length}{" "}
                   {isArabic
-                    ? "صورة"
-                    : gallery.length === 1
-                      ? "frame"
-                      : "frames"}
+                    ? arabicCount(gallery.length, {
+                        zero: "لا توجد صور",
+                        one: "صورة واحدة",
+                        two: "صورتان",
+                        few: "صور",
+                        many: "صورة",
+                      })
+                    : `${gallery.length} ${gallery.length === 1 ? "frame" : "frames"}`}
                 </p>
               </div>
             </Reveal>

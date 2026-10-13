@@ -8,9 +8,11 @@ import { JsonLd, serviceJsonLd } from "@/components/seo/json-ld";
 import {
   cataloguePath,
   getServiceArchitecture,
+  localizeCatalogueDetail,
   localizeText,
   serviceArchitecture,
   servicePath,
+  type CatalogueItem,
 } from "@/content/service-architecture";
 import { buildPageMetadata } from "@/lib/cms-seo";
 import { isLocale, localizePath, type Locale } from "@/lib/i18n";
@@ -19,6 +21,15 @@ import { ensureSiteConfig } from "@/sanity/load-site-config";
 type PageProps = {
   params: Promise<{ locale: string; serviceSlug: string; itemSlug: string }>;
 };
+
+function catalogueIntroduction(item: CatalogueItem, locale: Locale) {
+  return (
+    localizeCatalogueDetail(item, locale)?.introduction ||
+    localizeText(item.description, locale)
+  )
+    .replace(/\s+(?:The|This) page should\b.*$/i, "")
+    .trim();
+}
 
 function findCatalogueItem(serviceSlug: string, itemSlug: string) {
   const service = getServiceArchitecture(serviceSlug);
@@ -57,8 +68,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     path: `/services/${serviceSlug}/catalogue/${itemSlug}`,
     locale,
     fallbackTitle: `CPS — ${localizeText(result.item.title, locale)}`,
-    fallbackDescription:
-      result.item.detail?.introduction || localizeText(result.item.description, locale),
+    fallbackDescription: catalogueIntroduction(result.item, locale),
     fallbackOgImage: result.item.image || result.service.image,
   });
 }
@@ -72,11 +82,8 @@ export default async function CatalogueItemPage({ params }: PageProps) {
 
   const { service, category, item } = result;
   const productImage = item.image || service.image;
-  const introduction = (
-    item.detail?.introduction || localizeText(item.description, locale)
-  )
-    .replace(/\s+(?:The|This) page should\b.*$/i, "")
-    .trim();
+  const detail = localizeCatalogueDetail(item, locale);
+  const introduction = catalogueIntroduction(item, locale);
   const catalogueHref = localizePath(cataloguePath(service.slug), locale);
   const contactHref = localizePath("/contact", locale);
   const quoteHref = localizePath(
@@ -162,7 +169,7 @@ export default async function CatalogueItemPage({ params }: PageProps) {
           </div>
         </section>
 
-        {item.detail ? (
+        {detail ? (
           <div className="site-container catalogue-product-content-wrap">
             <div className="catalogue-product-content-head">
               <p className="eyebrow">{ar ? "تفاصيل المنتج" : "Product details"}</p>
@@ -171,31 +178,31 @@ export default async function CatalogueItemPage({ params }: PageProps) {
             <div className="catalogue-product-content-grid">
               <section className="catalogue-product-content-card">
                 <h3><span aria-hidden="true">01</span>{ar ? "ما يشمله" : "What's included"}</h3>
-                <ul dir={ar ? "ltr" : undefined}>
-                  {item.detail.included.map((entry) => (
+                <ul>
+                  {detail.included.map((entry) => (
                     <li key={entry}>{entry}</li>
                   ))}
                 </ul>
               </section>
               <section className="catalogue-product-content-card">
                 <h3><span aria-hidden="true">02</span>{ar ? "الأنسب لـ" : "Best for"}</h3>
-                <ul dir={ar ? "ltr" : undefined}>
-                  {item.detail.bestFor.map((entry) => (
+                <ul>
+                  {detail.bestFor.map((entry) => (
                     <li key={entry}>{entry}</li>
                   ))}
                 </ul>
               </section>
               <section className="catalogue-product-content-card">
                 <h3><span aria-hidden="true">03</span>{ar ? "الخيارات المتوفرة" : "Available options"}</h3>
-                <ul dir={ar ? "ltr" : undefined}>
-                  {item.detail.options.map((entry) => (
+                <ul>
+                  {detail.options.map((entry) => (
                     <li key={entry}>{entry}</li>
                   ))}
                 </ul>
               </section>
               <section className="catalogue-product-content-card catalogue-product-content-card--coverage">
                 <h3><span aria-hidden="true">04</span>{ar ? "نطاق التغطية والتوفر" : "Coverage and availability"}</h3>
-                <p dir={ar ? "ltr" : undefined}>{item.detail.coverage}</p>
+                <p>{detail.coverage}</p>
               </section>
             </div>
           </div>

@@ -75,7 +75,7 @@ export function ProductionCapabilitiesSection({
           <p>
             {standalone
               ? ar
-                ? "قدرات داخلية تخدم جميع خدماتنا، وتضبط الجودة من المادة الخام حتى التركيب النهائي."
+                ? "قدرات إنتاجية في مصنعنا تخدم جميع خدماتنا، وتضبط الجودة من المادة الخام حتى التركيب النهائي."
                 : "The shared in-house capabilities behind every service, from raw material to final installation."
               : ar
                 ? "كل مشروع يُنفَّذ في منشأة الإنتاج نفسها."

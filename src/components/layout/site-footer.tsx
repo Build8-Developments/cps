@@ -190,7 +190,7 @@ export function SiteFooter({
           <p>
             © {year} {config.legalName || config.name}. {footer.rights}
           </p>
-          <nav className="footer-bottom-links" aria-label="Legal">
+          <nav className="footer-bottom-links" aria-label={locale === "ar" ? "السياسات والشروط" : "Legal"}>
             {footer.bottomLinks.map((link) => (
               <Link
                 key={link.href + link.label}

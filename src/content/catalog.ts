@@ -2421,7 +2421,7 @@ export const boothTypes: BoothTypeRecord[] = [
       ],
     },
     ar: {
-      title: "أجنحة مصممة حسب الطلب في {City}",
+      title: "أجنحة مصمَّمة حسب الطلب في {City}",
       excerpt: "أجنحة تُصمَّم وتُصنَّع خصيصاً لعلامتك.",
       overviewTitle: "لا قوالب جاهزة — جناحك وحده",
       description: "يُصنع من الصفر، وينطلق بالكامل من أهدافك.",
@@ -2927,7 +2927,7 @@ export const boothTypes: BoothTypeRecord[] = [
       ],
     },
     ar: {
-      title: "عروض متنقلة ومنصات مؤقتة في {City}",
+      title: "وحدات عرض محمولة وسريعة التركيب في {City}",
       excerpt: "سريعة التركيب، سهلة النقل، وجاهزة متى احتجتها.",
       overviewTitle: "بسيطة وسريعة ومرنة",
       description: "حل عملي للفعاليات المتكررة أو محدودة الحجم.",
@@ -3098,7 +3098,7 @@ export const boothTypes: BoothTypeRecord[] = [
       ],
     },
     ar: {
-      title: "أكشاك وأجنحة المساحات الصغيرة في {City}",
+      title: "أكشاك وأجنحة للمساحات الصغيرة في {City}",
       excerpt: "حضور مدمج بأثر واضح.",
       overviewTitle: "مساحة صغيرة، حضور قوي",
       description:
@@ -3274,7 +3274,7 @@ export const boothTypes: BoothTypeRecord[] = [
       ],
     },
     ar: {
-      title: "الهياكل الخارجية وتفعيلات العلامة في {City}",
+      title: "هياكل خارجية وتجارب تفاعلية للعلامة التجارية في {City}",
       excerpt: "منشآت لافتة مصممة للأداء خارج قاعات المعارض.",
       overviewTitle: "مساحات أكبر لأثر أكبر",
       description:
@@ -3450,7 +3450,7 @@ export const boothTypes: BoothTypeRecord[] = [
       ],
     },
     ar: {
-      title: "الأجنحة الوطنية وأجنحة الدول في {City}",
+      title: "أجنحة وطنية وأجنحة دول في {City}",
       excerpt: "أجنحة كبرى تمثّل الدول على المنصات الدولية.",
       overviewTitle: "حضور يليق بتمثيل الوطن",
       description:
@@ -3625,7 +3625,7 @@ export const boothTypes: BoothTypeRecord[] = [
       ],
     },
     ar: {
-      title: "أجنحة مستدامة وصديقة للبيئة في {City}",
+      title: "أجنحة قابلة لإعادة الاستخدام في {City}",
       excerpt: "حضور قوي وأثر بيئي أخف.",
       overviewTitle: "حضور يعكس قيمك",
       description:
@@ -3950,7 +3950,7 @@ const regionCapabilities: Record<RegionKey, { en: LocationCapability[]; ar: Loca
       { title: "Outdoor-ready structures", description: "Materials and fixings chosen for open-air and seasonal events." },
     ],
     ar: [
-      { title: "تغطية المنطقة الغربية", description: "شحن وفرق تركيب مخطط لها لمواقع المنطقة الغربية." },
+      { title: "تغطية المنطقة الغربية", description: "تخطيط الشحن وتوزيع فرق التركيب لمواقع المنطقة الغربية." },
       { title: "بيئات سياحية وتراثية", description: "تنفيذ يراعي حساسية المواقع وبرامج الزوار الكبيرة." },
       { title: "هياكل للمواقع المفتوحة", description: "خامات وطرق تثبيت مناسبة للفعاليات الخارجية والموسمية." },
     ],
@@ -3963,7 +3963,7 @@ const regionCapabilities: Record<RegionKey, { en: LocationCapability[]; ar: Loca
     ],
     ar: [
       { title: "لوجستيات المنطقة الجنوبية", description: "تخطيط الشحن والتركيب بما يناسب الطرق الجبلية والساحلية." },
-      { title: "تجهيزات موسم السياحة", description: "هياكل فعاليات وتفعيلات جاهزة لموسم الصيف." },
+      { title: "تجهيزات موسم السياحة", description: "هياكل فعاليات وتجهيزات لتجارب تفاعلية في موسم الصيف." },
       { title: "برامج حكومية وعامة", description: "أجنحة ومساحات عرض لمبادرات المنطقة وفعالياتها الرسمية." },
     ],
   },
@@ -3992,7 +3992,7 @@ function regionalLocations(): LocationRecord[] {
       slug: "abha",
       image: media.locations.abha,
       en: ["Abha", "Summer-season events, tourism activations and regional exhibitions.", "Abha projects are planned around the Aseer summer season, with builds that handle mountain access and outdoor conditions."],
-      ar: ["أبها", "فعاليات موسم الصيف وتفعيلات سياحية ومعارض إقليمية.", "نخطط مشاريع أبها وفق موسم صيف عسير، بتنفيذ يراعي الطرق الجبلية وظروف المواقع المفتوحة."],
+      ar: ["أبها", "فعاليات موسم الصيف وأنشطة ترويجية سياحية ومعارض إقليمية.", "نخطط مشاريع أبها وفق موسم صيف عسير، بتنفيذ يراعي الطرق الجبلية وظروف المواقع المفتوحة."],
     },
     {
       slug: "al-ahsa",
@@ -4022,13 +4022,13 @@ function regionalLocations(): LocationRecord[] {
       slug: "alula",
       image: media.locations.alula,
       en: ["AlUla", "Cultural festivals, premium activations and heritage-site events.", "AlUla projects demand careful logistics and builds that respect heritage landscapes while meeting premium event standards."],
-      ar: ["العلا", "مهرجانات ثقافية وتفعيلات فاخرة وفعاليات في مواقع تراثية.", "تتطلب مشاريع العلا لوجستيات دقيقة وتنفيذاً يحترم طبيعة المواقع التراثية ويحقق معايير الفعاليات الفاخرة."],
+      ar: ["العلا", "مهرجانات ثقافية وتجارب تفاعلية فاخرة وفعاليات في مواقع تراثية.", "تتطلب مشاريع العلا لوجستيات دقيقة وتنفيذاً يحترم طبيعة المواقع التراثية ويحقق معايير الفعاليات الفاخرة."],
     },
     {
       slug: "buraidah",
       image: media.locations.buraidah,
       en: ["Buraidah", "Trade shows, date festival activations and retail displays.", "Buraidah hosts some of the region's busiest seasonal events; we plan builds to be ready before peak visitor days."],
-      ar: ["بريدة", "معارض تجارية وتفعيلات مهرجان التمور ووحدات عرض للمتاجر.", "تستضيف بريدة بعضاً من أكثر فعاليات المنطقة الموسمية ازدحاماً، ونخطط التنفيذ ليكون جاهزاً قبل أيام الذروة."],
+      ar: ["بريدة", "معارض تجارية وتجارب تفاعلية لمهرجان التمور ووحدات عرض للمتاجر.", "تستضيف بريدة بعضاً من أكثر فعاليات المنطقة الموسمية ازدحاماً، ونخطط التنفيذ ليكون جاهزاً قبل أيام الذروة."],
     },
     {
       slug: "dhahran",
@@ -4040,7 +4040,7 @@ function regionalLocations(): LocationRecord[] {
       slug: "hail",
       image: media.locations.hail,
       en: ["Hail", "Regional festivals, rally events and government exhibitions.", "Hail builds are planned for long-distance delivery, from rally activations to regional exhibition stands."],
-      ar: ["حائل", "مهرجانات إقليمية وفعاليات الرالي ومعارض حكومية.", "نخطط مشاريع حائل للتسليم لمسافات طويلة، من تفعيلات الرالي إلى أجنحة المعارض الإقليمية."],
+      ar: ["حائل", "مهرجانات إقليمية وفعاليات الرالي ومعارض حكومية.", "نخطط نقل تجهيزات مشاريع حائل وتسليمها لمسافات طويلة، من أنشطة الرالي التفاعلية إلى أجنحة المعارض الإقليمية."],
     },
     {
       slug: "jazan",
@@ -4070,13 +4070,13 @@ function regionalLocations(): LocationRecord[] {
       slug: "tabuk",
       image: media.locations.tabuk,
       en: ["Tabuk", "Regional exhibitions and giga-project activations in the northwest.", "Tabuk projects connect to the northwest's giga-project activity, with freight and crews planned for long-distance delivery."],
-      ar: ["تبوك", "معارض إقليمية وتفعيلات للمشاريع الكبرى في الشمال الغربي.", "ترتبط مشاريع تبوك بنشاط المشاريع الكبرى في الشمال الغربي، ونخطط لها الشحن والفرق للتسليم لمسافات طويلة."],
+      ar: ["تبوك", "معارض إقليمية وتجارب تفاعلية للمشاريع الكبرى في الشمال الغربي.", "ترتبط مشاريع تبوك بنشاط المشاريع الكبرى في الشمال الغربي، ونخطط لها الشحن والفرق للتسليم لمسافات طويلة."],
     },
     {
       slug: "taif",
       image: media.locations.taif,
       en: ["Taif", "Summer-season festivals, cultural events and brand activations.", "Taif builds are timed around the summer season and cultural festivals, with outdoor-ready structures and fast installs."],
-      ar: ["الطائف", "مهرجانات الصيف وفعاليات ثقافية وتفعيلات للعلامات التجارية.", "نوقّت مشاريع الطائف وفق موسم الصيف والمهرجانات الثقافية، بهياكل مناسبة للمواقع المفتوحة وتركيب سريع."],
+      ar: ["الطائف", "مهرجانات الصيف وفعاليات ثقافية وتجارب تفاعلية للعلامات التجارية.", "نوقّت مشاريع الطائف وفق موسم الصيف والمهرجانات الثقافية، بهياكل مناسبة للمواقع المفتوحة وتركيب سريع."],
     },
     {
       slug: "unaizah",
@@ -4167,7 +4167,7 @@ export const locations: LocationRecord[] = [
     },
     ar: {
       title: "جدة",
-      excerpt: "معارض تجارية على ساحل البحر الأحمر، وتفعيلات للتجزئة، ومشاريع في المواقع الساحلية.",
+      excerpt: "معارض تجارية على ساحل البحر الأحمر، وأنشطة ترويجية للمتاجر، ومشاريع في المواقع الساحلية.",
       localExperience:
         "نجمع في مشاريع جدة بين تصميم ينطلق من العلامة ولوجستيات تناسب مواقع البحر الأحمر ومواسم فعاليات المنطقة الغربية.",
       capabilities: [
@@ -4225,11 +4225,11 @@ export const locations: LocationRecord[] = [
     },
     ar: {
       title: "الخبر",
-      excerpt: "تفعيلات للشركات والتقنية والعلامات التجارية في مواقع الخبر.",
+      excerpt: "أنشطة تفاعلية للشركات وقطاع التقنية والعلامات التجارية في مواقع الخبر.",
       localExperience:
         "نركّز في مشاريع الخبر على حضور متقن للعلامة، مع دعم التركيب في القاعات المحلية وفعاليات الشركات.",
       capabilities: [
-      { title: "تفعيلات العلامة", description: "أجنحة بتشطيبات عالية لجمهور الشركات وقطاع التقنية." },
+      { title: "التجارب التفاعلية للعلامة التجارية", description: "أجنحة بتشطيبات عالية لجمهور الشركات وقطاع التقنية." },
       { title: "معرفة بالمواقع المحلية", description: "فرق تعرف اشتراطات مواقع الخبر ومواعيدها." },
       { title: "جاهزة لإعادة الاستخدام", description: "خيارات تخزين وإعادة تركيب للعارضين الدائمين." },
       ],
@@ -4312,13 +4312,13 @@ export const locations: LocationRecord[] = [
     },
     ar: {
       title: "نيوم",
-      excerpt: "تفعيلات تستشرف المستقبل وحضور بمستوى الأجنحة الكبرى لمشاريع نيوم.",
+      excerpt: "تجارب تفاعلية مبتكرة وأجنحة عرض كبرى لمشاريع نيوم.",
       localExperience:
-        "تتطلب مشاريع نيوم لوجستيات دقيقة وتشطيبات فاخرة وفرقاً مستعدة لمشاريع مكانية طموحة.",
+        "تتطلب مشاريع نيوم لوجستيات دقيقة وتشطيبات فاخرة وفرقاً مستعدة لمشاريع طموحة في تصميم المساحات وتنفيذها.",
       capabilities: [
-      { title: "تصنيع فاخر", description: "خامات وتفاصيل مصنوعة لبيئات تحت الأضواء." },
+      { title: "تصنيع فاخر", description: "خامات وتفاصيل مصنَّعة لمساحات تحظى باهتمام واسع." },
       { title: "لوجستيات معقّدة", description: "تخطيط الشحن والتركيب للمواقع النائية ومحدودة الدخول." },
-      { title: "فرق للمشاريع الكبرى", description: "قدرة على تنفيذ المنشآت الكبيرة والتجارب التفاعلية." },
+      { title: "فرق لتنفيذ الأجنحة الكبرى", description: "قدرة على تنفيذ المنشآت الكبيرة والتجارب التفاعلية." },
       ],
     },
   },
@@ -4347,8 +4347,8 @@ export const newsArticles: NewsRecord[] = [
       ],
     },
     ar: {
-      title: "الإنتاج تحت سقف واحد: لماذا يغيّر نتيجة جناحك؟",
-      excerpt: "حين يتولى فريق واحد التصميم والتصنيع، تقل حلقات التسليم بين الجهات وتبقى المواعيد تحت السيطرة.",
+      title: "كيف يؤثر التصنيع المتكامل في نجاح جناحك؟",
+      excerpt: "عندما يتولى فريق واحد التصميم والتصنيع، يقل انتقال العمل بين الجهات ويسهل الالتزام بالجدول الزمني.",
       body: [
         "تعود معظم التأخيرات في المعارض إلى تشتت المسؤولية: التصميم لدى جهة، والتصنيع لدى أخرى، والتركيب لدى ثالثة. ومع كل انتقال بين جهتين تضيع معلومة أو يتأخر قرار.",
         "أما حين تتولى CPS مراحل الجناح كلها بفريقها وفي مصنعها، فالقرارات تُتخذ أسرع، والجودة تبقى ثابتة، والجناح الذي يستقبل الزوار يوم الافتتاح هو نفسه التصميم الذي اعتمدته.",
@@ -4375,12 +4375,12 @@ export const newsArticles: NewsRecord[] = [
       ],
     },
     ar: {
-      title: "المعياري أم المخصص: كيف تختار جناحك؟",
+      title: "الجناح المعياري أم المصمَّم حسب الطلب: أيهما يناسب مشاركتك؟",
       excerpt: "دليل عملي لاختيار نوع الجناح وفق جدول مشاركاتك وميزانيتك وطموح علامتك.",
       body: [
         "الجناح المخصص هو الخيار الأنسب حين يكون التميّز وتجربة الزائر في المقدمة، أما الأنظمة المعيارية فتتفوق حين تحتاج إلى سرعة التنفيذ وإعادة الاستخدام على مدار الموسم.",
         "وكثيراً ما تجمع أنجح الخطط بين الخيارين: جناح مخصص يتصدّر حضورك في المعارض الكبرى، وأنظمة معيارية للمشاركات الإقليمية.",
-        "ابدأ بجدول مشاركاتك وأهدافك، ثم اختر الهيكل الذي يحمي علامتك وميزانيتك معاً.",
+        "ابدأ بجدول مشاركاتك وأهدافك، ثم اختر التصميم الذي يحقق أهداف علامتك ويلائم ميزانيتك.",
       ],
     },
   },
@@ -4418,6 +4418,12 @@ export function localizeLocation(location: LocationRecord, locale: Locale) {
     slug: location.slug,
     countryCode: location.countryCode,
   };
+}
+
+/** Display label for an article category; the stored default is the English "Insights". */
+export function localizeNewsCategory(category: string | undefined, locale: Locale) {
+  if (locale === "ar" && (!category || category === "Insights")) return "رؤى";
+  return category ?? "";
 }
 
 export function localizeNews(article: NewsRecord, locale: Locale) {

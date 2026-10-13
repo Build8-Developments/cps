@@ -218,3 +218,19 @@ node --import tsx scripts/migrate-blueprint-content.ts --apply
 ```
 
 The apply step uses one revision-checked transaction and writes a backup under the operating system temporary directory before committing.
+
+## Arabic copy review (13 Oct 2026)
+
+The Arabic wording changes from `CPS_Arabic_Review_2026-10-13.xlsx` live in the local content files and, because the
+seed never overwrites existing fields, are pushed into existing Arabic documents by a targeted migration. Its
+replacement table is `scripts/data/arabic-review-2026-10-13.json`; it only touches documents whose language is `ar`,
+including copy inside the `dictionary.content`, `homePage.sections.payload` and `contactPageDoc.briefForm.payload` JSON
+payloads. Run the dry run first and read the plan file it writes.
+
+```bash
+node --import tsx scripts/apply-arabic-review.ts            # dry run, add --verbose for a full diff
+node --import tsx scripts/apply-arabic-review.ts --apply    # needs a write token
+```
+
+Apply writes revision-checked transactions and saves the previous versions under the operating system temporary
+directory. The script is idempotent: a second run reports nothing to update.

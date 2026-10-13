@@ -5,6 +5,7 @@ import { JsonLd, serviceJsonLd } from "@/components/seo/json-ld";
 import { InnerPageEngagement } from "@/components/sections/inner-page-engagement";
 import { LocationDetailSections } from "@/components/sections/location-detail-sections";
 import { PageHero } from "@/components/sections/page-hero";
+import { formatBoothTypeTitle } from "@/content/catalog";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { buildPageMetadata } from "@/lib/cms-seo";
 import { resolveDictionary } from "@/lib/dictionary";
@@ -70,7 +71,7 @@ export default async function LocationDetailPage({ params }: PageProps) {
     .filter((item) => item.slug !== slug)
     .slice(0, 4);
   const homeLabel = locale === "ar" ? "الرئيسية" : "Home";
-  const hubLabel = locale === "ar" ? "المواقع" : "Locations";
+  const hubLabel = locale === "ar" ? "مناطق خدمتنا" : "Locations";
   const briefHref = `#location-${slug}-brief`;
 
   return (
@@ -142,7 +143,7 @@ export default async function LocationDetailPage({ params }: PageProps) {
         }))}
         boothTypes={boothTypes.map((item) => ({
           slug: item.slug,
-          title: item.title,
+          title: formatBoothTypeTitle(item.title, location.title),
         }))}
         briefHref={briefHref}
         ctaLabel={dictionary.nav.cta}

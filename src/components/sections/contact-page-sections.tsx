@@ -5,6 +5,7 @@ import { SocialIcon } from "@/components/ui/social-icon";
 import { getContactFormCopy } from "@/content/contact-form.copy";
 import type { Locale } from "@/lib/i18n";
 import {
+  formatSiteAddress,
   getMailtoUrl,
   getWhatsAppUrl,
   type SiteConfigShape,
@@ -94,9 +95,7 @@ export function ContactPageSections({
                 </li>
                 <li>
                   <span className="contact-info-label">{copy.info.addressLabel}</span>
-                  <span>
-                    {config.address.city}, {config.address.countryName}
-                  </span>
+                  <span>{formatSiteAddress(locale)}</span>
                 </li>
                 {copy.businessHours ? (
                   <li>
@@ -194,7 +193,7 @@ export function ContactPageSections({
             <div className="contact-map-foot">
               <p className="contact-map-address">
                 <span>{copy.map.hqLabel}</span>
-                {config.address.city}, {config.address.countryName}
+                {formatSiteAddress(locale)}
               </p>
               <a
                 href={mapsOpenUrl(config)}

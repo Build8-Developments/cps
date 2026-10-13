@@ -10,7 +10,7 @@ export function CapabilityExplainerSection({ locale }: { locale: Locale }) {
       title: ar ? "الخدمات" : "Services",
       eyebrow: ar ? "ما يختاره عملاؤنا" : "What clients choose",
       statement: ar
-        ? "حلّ متكامل يُصمَّم وفق موجز مشروعك واحتياجاته."
+        ? "حلّ متكامل يُصمَّم وفق متطلبات مشروعك واحتياجاته."
         : "A finished solution built around the brief and the project need.",
       metric: ar ? "٨ مجموعات خدمات" : "8 service families",
       outcome: ar ? "تختار النتيجة التي يحتاجها مشروعك" : "Choose the right outcome for the project",
@@ -19,7 +19,7 @@ export function CapabilityExplainerSection({ locale }: { locale: Locale }) {
       key: "capability",
       number: "02",
       title: ar ? "قدرات الإنتاج" : "Production capabilities",
-      eyebrow: ar ? "قدراتنا التنفيذية الداخلية" : "The in-house engine",
+      eyebrow: ar ? "قدراتنا الإنتاجية في مصنعنا" : "The in-house engine",
       statement: ar
         ? "الكوادر والمعدات والتخصصات التي تصنع الحل وتركّبه."
         : "The people, machinery and disciplines that produce and install it.",

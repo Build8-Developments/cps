@@ -7,6 +7,9 @@ type CloudinaryProjectInput = {
   year: string;
   clientName: { en: string; ar: string };
   title: { en: string; ar: string };
+  /** Arabic summary written per project (hero lead, cards, meta description). */
+  summaryAr: string;
+  imageAltAr?: string;
   kind: keyof typeof copyByKind;
   image: string;
   gallery: string[];
@@ -14,6 +17,7 @@ type CloudinaryProjectInput = {
   industrySlug?: string;
   locationSlug?: string;
   event?: string;
+  eventAr?: string;
   size?: string;
   featured?: boolean;
 };
@@ -29,7 +33,7 @@ const copyByKind = {
     approachEn: "CPS coordinated detailing, fabrication, graphics and site delivery as one production workflow, resolving the build before installation.",
     approachAr: "أدارت CPS التفاصيل التنفيذية والتصنيع والطباعة والتركيب في الموقع ضمن مسار إنتاج واحد، وحسمت تفاصيل البناء كافة قبل الوصول إلى الموقع.",
     outcomeEn: "A polished exhibition presence delivered as a complete, installation-ready environment.",
-    outcomeAr: "جناح متقن التشطيب سُلّم متكاملاً وجاهزاً لاستقبال الزوار من اليوم الأول.",
+    outcomeAr: "عناصر جناح متقنة التشطيب، سُلِّمت متكاملة وجاهزة للتركيب.",
   },
   event: {
     categoryEn: "Event Fabrication",
@@ -53,7 +57,7 @@ const copyByKind = {
     approachEn: "CPS standardised materials, print output and finishing checks before packing and dispatch.",
     approachAr: "وحّدت CPS الخامات ومعايير الطباعة، وأخضعت كل قطعة لفحص التشطيب قبل التغليف والشحن.",
     outcomeEn: "A consistent branded collection prepared for reliable distribution and use.",
-    outcomeAr: "مجموعة متناسقة بهوية العلامة، جاهزة للتوزيع والاستخدام دون مفاجآت.",
+    outcomeAr: "مجموعة متناسقة بهوية العلامة، جاهزة للتوزيع والاستخدام بصورة موثوقة.",
   },
   retail: {
     categoryEn: "Retail Displays",
@@ -61,7 +65,7 @@ const copyByKind = {
     scopeEn: "Retail fixture fabrication, branded graphics, finishing and multi-site installation.",
     scopeAr: "تصنيع وحدات العرض، والرسومات بهوية العلامة، والتشطيب، والتركيب في عدة فروع.",
     challengeEn: "Create durable, repeatable fixtures that present products clearly across active retail and pharmacy locations.",
-    challengeAr: "إنتاج وحدات عرض متينة بتصميم موحّد يمكن تكراره، تُبرز المنتجات بوضوح داخل متاجر وصيدليات مفتوحة للعملاء أثناء التركيب.",
+    challengeAr: "إنتاج وحدات عرض متينة بتصميم موحّد يمكن تكراره، تُبرز المنتجات بوضوح داخل المتاجر والصيدليات، بما يلائم طبيعة استخدامها اليومي.",
     approachEn: "CPS standardised the fixture build, finishes and graphic application for consistent deployment.",
     approachAr: "وحّدت CPS مواصفات التصنيع والتشطيب وتطبيق الهوية، ليأتي التنفيذ متطابقاً في كل فرع.",
     outcomeEn: "A consistent retail display system installed for clear merchandising and everyday operation.",
@@ -92,6 +96,7 @@ function buildProject(input: CloudinaryProjectInput): Project {
     year: input.year,
     image: input.image,
     imageAlt: `${input.title.en} — CPS project`,
+    imageAltAr: input.imageAltAr ?? `${input.title.ar} — مشروع نفّذته CPS`,
     gallery: input.gallery,
     motionVideo: input.motionVideo,
     industrySlug: input.industrySlug,
@@ -100,6 +105,7 @@ function buildProject(input: CloudinaryProjectInput): Project {
     boothTypeSlug: input.kind === "booth" ? "custom" : undefined,
     locationSlug: input.locationSlug,
     event: input.event,
+    eventAr: input.eventAr,
     size: input.size,
     technologies: [...serviceByKind[input.kind].tech],
     featured: input.featured,
@@ -116,7 +122,7 @@ function buildProject(input: CloudinaryProjectInput): Project {
     ar: {
       title: input.title.ar,
       category: copy.categoryAr,
-      summary: `مشروع نفّذته CPS لصالح ${input.clientName.ar}، من التصنيع حتى التسليم.`,
+      summary: input.summaryAr,
       scopeOfWork: copy.scopeAr,
       challenge: copy.challengeAr,
       approach: copy.approachAr,
@@ -168,6 +174,8 @@ export const cloudinaryProjects: Project[] = [
     year: "2026",
     clientName: { en: "Ajlan & Bros", ar: "عجلان وإخوانه" },
     title: { en: "Ajlan Booth — Mining & Metal Expo 2026", ar: "جناح عجلان — معرض التعدين والمعادن 2026" },
+    summaryAr: "صنّعت CPS جناح عجلان وإخوانه ونفّذته لمعرض التعدين والمعادن 2026.",
+    imageAltAr: "جناح عجلان في معرض التعدين والمعادن 2026 — مشروع نفّذته CPS",
     kind: "booth",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256139/IMG-20260109-WA0010.jpg",
     gallery: [
@@ -182,6 +190,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "real-estate",
     locationSlug: "riyadh",
     event: "Mining & Metal Expo 2026",
+    eventAr: "معرض التعدين والمعادن 2026",
     featured: true,
   }),
   buildProject({
@@ -191,6 +200,8 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Bufomix", ar: "بوفوميكس" },
     title: { en: "Bufomix Booth — STS Hail 2025", ar: "جناح بوفوميكس — مؤتمر STS حائل 2025" },
+    summaryAr: "صنّعت CPS جناح بوفوميكس ونفّذته لمؤتمر STS الدولي في حائل عام 2025.",
+    imageAltAr: "جناح بوفوميكس في مؤتمر STS بحائل 2025 — مشروع نفّذته CPS",
     kind: "booth",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256121/Photo_from_Aevenda_MBE_10.jpg",
     gallery: [
@@ -206,6 +217,7 @@ export const cloudinaryProjects: Project[] = [
     ],
     industrySlug: "healthcare-pharmaceutical",
     event: "STS International Conference 2025",
+    eventAr: "مؤتمر STS الدولي 2025",
     size: "3×3 m",
   }),
   buildProject({
@@ -215,6 +227,8 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Hikma — Megamox", ar: "حكمة — ميجاموكس" },
     title: { en: "Hikma Megamox Booth — Jeddah", ar: "جناح حكمة ميجاموكس — جدة" },
+    summaryAr: "صنّعت CPS جناح حكمة ميجاموكس ونفّذته في جدة.",
+    imageAltAr: "جناح حكمة ميجاموكس في جدة — مشروع نفّذته CPS",
     kind: "booth",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256108/Photo_from_Aevenda_MBE_5.jpg",
     gallery: [
@@ -233,6 +247,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Hikma", ar: "حكمة" },
     title: { en: "Hikma Booth — 2nd Kidney Forum 2025", ar: "جناح حكمة — ملتقى الكلى الثاني 2025" },
+    summaryAr: "صنّعت CPS جناح حكمة ونفّذته لملتقى الكلى الثاني في الرياض عام 2025.",
     kind: "booth",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256113/IMG-20251023-WA0035.jpg",
     gallery: [
@@ -242,6 +257,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "healthcare-pharmaceutical",
     locationSlug: "riyadh",
     event: "2nd Kidney Forum",
+    eventAr: "ملتقى الكلى الثاني",
     size: "2×2 m",
   }),
   buildProject({
@@ -250,7 +266,8 @@ export const cloudinaryProjects: Project[] = [
     slug: "meena-booth-riyadh",
     year: "2025",
     clientName: { en: "Meena", ar: "مينا" },
-    title: { en: "Meena Booth & Activation — Riyadh", ar: "جناح وتفعيل مينا — الرياض" },
+    title: { en: "Meena Booth & Activation — Riyadh", ar: "جناح وتجربة تفاعلية لمينا في الرياض" },
+    summaryAr: "صنّعت CPS جناح مينا وتجهيزات تجربته التفاعلية ونفّذتها في الرياض.",
     kind: "booth",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256118/Photo_from_Aevenda_MBE_1.jpg",
     gallery: [
@@ -269,6 +286,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Nusuk", ar: "نُسُك" },
     title: { en: "Nusuk Booth — Jeddah 2025", ar: "جناح نُسُك — جدة 2025" },
+    summaryAr: "صنّعت CPS جناح نُسُك ونفّذته في جدة في نوفمبر 2025.",
     kind: "booth",
     image: videoPoster("https://res.cloudinary.com/jivfgunl/video/upload/v1789256363/Video_from_Aevenda_MBE_1.mp4"),
     gallery: [
@@ -277,6 +295,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "government-public-sector",
     locationSlug: "jeddah",
     event: "Nusuk, November 2025",
+    eventAr: "نُسُك — نوفمبر 2025",
     size: "15×7 m",
   }),
   buildProject({
@@ -285,7 +304,8 @@ export const cloudinaryProjects: Project[] = [
     slug: "riyad-bank-al-hilal-activations-2025-2026",
     year: "2025–2026",
     clientName: { en: "Riyad Bank & Al Hilal", ar: "بنك الرياض والهلال" },
-    title: { en: "Riyad Bank & Al Hilal Booths and Activations", ar: "أجنحة وتفعيلات بنك الرياض والهلال" },
+    title: { en: "Riyad Bank & Al Hilal Booths and Activations", ar: "أجنحة وتجارب تفاعلية لبنك الرياض ونادي الهلال" },
+    summaryAr: "صنّعت CPS أجنحة وتجهيزات لتجارب تفاعلية لبنك الرياض ونادي الهلال ضمن برنامج مشاركاتهما لعامَي 2025 و2026.",
     kind: "booth",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256074/IMG-20260108-WA0034.jpg",
     gallery: [
@@ -302,6 +322,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "sports-entertainment",
     locationSlug: "riyadh",
     event: "2025–2026 activation programme",
+    eventAr: "برنامج التجارب التفاعلية 2025–2026",
     featured: true,
   }),
   buildProject({
@@ -310,7 +331,8 @@ export const cloudinaryProjects: Project[] = [
     slug: "sirar-booth-2x2",
     year: "2025",
     clientName: { en: "Sirar", ar: "سرار" },
-    title: { en: "Sirar Booth 2×2", ar: "جناح سرار 2×2" },
+    title: { en: "Sirar Booth 2×2", ar: "جناح سرار بمقاس 2 × 2 م" },
+    summaryAr: "صنّعت CPS جناح سرار بمقاس 2 × 2 م ونفّذته وفق متطلبات المشروع.",
     kind: "booth",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256128/Photo_from_Aevenda_MBE_4.jpg",
     gallery: [
@@ -328,6 +350,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Saudi National Bank", ar: "البنك الأهلي السعودي" },
     title: { en: "SNB Booth — Laysen Valley 2025", ar: "جناح الأهلي السعودي — ليسن فالي 2025" },
+    summaryAr: "صنّعت CPS جناح البنك الأهلي السعودي ونفّذته في ليسن فالي بالرياض في ديسمبر 2025.",
     kind: "booth",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256092/Copy_of_DSC01719.jpg",
     gallery: [
@@ -345,6 +368,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "banking-financial-services",
     locationSlug: "riyadh",
     event: "Laysen Valley, December 2025",
+    eventAr: "ليسن فالي — ديسمبر 2025",
     size: "5×4 m",
     featured: true,
   }),
@@ -354,7 +378,8 @@ export const cloudinaryProjects: Project[] = [
     slug: "snb-quickpay-booth-activation",
     year: "2025",
     clientName: { en: "SNB Quickpay", ar: "كويك باي من الأهلي السعودي" },
-    title: { en: "SNB Quickpay Booth & Video Activation", ar: "جناح كويك باي وتفعيل تسجيل الفيديو" },
+    title: { en: "SNB Quickpay Booth & Video Activation", ar: "جناح كويك باي وتجربة تفاعلية بالفيديو" },
+    summaryAr: "صنّعت CPS جناح كويك باي من البنك الأهلي السعودي وتجهيزات تجربته التفاعلية بالفيديو ونفّذتها في الرياض.",
     kind: "booth",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256121/IMG-20251119-WA0041.jpg",
     gallery: [
@@ -376,7 +401,8 @@ export const cloudinaryProjects: Project[] = [
     slug: "sab-invest-keswet-sheta-branding",
     year: "2025",
     clientName: { en: "SAB Invest", ar: "الأول للاستثمار" },
-    title: { en: "SAB Invest — Keswet Sheta Branding", ar: "الأول للاستثمار — هوية كسوة الشتاء" },
+    title: { en: "SAB Invest — Keswet Sheta Branding", ar: "تنفيذ مواد بهوية «كسوة الشتاء» للأول للاستثمار" },
+    summaryAr: "نفّذت CPS مواد مطبوعة بهوية «كسوة الشتاء» للأول للاستثمار، مع تجهيزها للتوزيع والاستخدام.",
     kind: "branding",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256067/IMG-20251217-WA0035.jpg",
     gallery: [
@@ -398,6 +424,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Jakaroo", ar: "جاكارو" },
     title: { en: "Jakaroo Event Gate 2025", ar: "بوابة فعالية جاكارو 2025" },
+    summaryAr: "صنّعت CPS بوابة فعالية جاكارو ونفّذتها في الرياض في ديسمبر 2025.",
     kind: "event",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256135/01-26.jpg",
     gallery: [
@@ -407,6 +434,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "sports-entertainment",
     locationSlug: "riyadh",
     event: "December 2025",
+    eventAr: "ديسمبر 2025",
   }),
   buildProject({
     projectCode: "CEV-1003",
@@ -415,6 +443,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Riyad Bank", ar: "بنك الرياض" },
     title: { en: "Riyad Bank Risk Management Event", ar: "فعالية إدارة المخاطر لبنك الرياض" },
+    summaryAr: "صنّعت CPS تجهيزات فعالية إدارة المخاطر لبنك الرياض ونفّذتها في الرياض في نوفمبر 2025.",
     kind: "event",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256116/IMG-20251111-WA0060.jpg",
     gallery: [
@@ -430,6 +459,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "banking-financial-services",
     locationSlug: "riyadh",
     event: "Risk Management, November 2025",
+    eventAr: "إدارة المخاطر — نوفمبر 2025",
     featured: true,
   }),
   buildProject({
@@ -439,6 +469,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Saudi National Bank", ar: "البنك الأهلي السعودي" },
     title: { en: "SNB Keshteh Gate 2025", ar: "بوابة كشتة للأهلي السعودي 2025" },
+    summaryAr: "صنّعت CPS بوابة فعالية «كشتة» للبنك الأهلي السعودي ونفّذتها في الرياض في ديسمبر 2025.",
     kind: "event",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256120/IMG-20251220-WA0002.jpg",
     gallery: [
@@ -449,6 +480,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "banking-financial-services",
     locationSlug: "riyadh",
     event: "Keshteh, December 2025",
+    eventAr: "كشتة — ديسمبر 2025",
   }),
   buildProject({
     projectCode: "CEV-1006-A",
@@ -457,6 +489,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Riyad Bank", ar: "بنك الرياض" },
     title: { en: "Riyad Bank Molhem Event 2025", ar: "فعالية ملهم لبنك الرياض 2025" },
+    summaryAr: "صنّعت CPS تجهيزات فعالية «ملهم» لبنك الرياض ونفّذتها في الرياض في أكتوبر 2025.",
     kind: "event",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256105/IMG-20251102-WA0071.jpg",
     gallery: [
@@ -469,6 +502,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "banking-financial-services",
     locationSlug: "riyadh",
     event: "Molhem, October 2025",
+    eventAr: "ملهم — أكتوبر 2025",
   }),
   buildProject({
     projectCode: "CEV-1006-B",
@@ -477,6 +511,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2026",
     clientName: { en: "Tawuniya", ar: "التعاونية" },
     title: { en: "Tawuniya Mobility 2026", ar: "فعالية التنقل للتعاونية 2026" },
+    summaryAr: "صنّعت CPS تجهيزات فعالية التنقل للتعاونية ونفّذتها في مايو 2026.",
     kind: "event",
     image: videoPoster("https://res.cloudinary.com/jivfgunl/video/upload/v1789256314/Tawuniya_Mobility_Video.mp4"),
     gallery: [
@@ -485,6 +520,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "banking-financial-services",
     locationSlug: "riyadh",
     event: "Mobility, May 2026",
+    eventAr: "فعالية التنقل — مايو 2026",
     featured: true,
   }),
   buildProject({
@@ -493,7 +529,8 @@ export const cloudinaryProjects: Project[] = [
     slug: "gondola-retail-pharmacy-installations",
     year: "2025",
     clientName: { en: "Gondola", ar: "جوندولا" },
-    title: { en: "Gondola Retail & Pharmacy Installations", ar: "تركيبات جوندولا للمتاجر والصيدليات" },
+    title: { en: "Gondola Retail & Pharmacy Installations", ar: "تركيب أرفف عرض للمتاجر والصيدليات" },
+    summaryAr: "صنّعت CPS وحدات أرفف عرض للمتاجر والصيدليات، مع تنفيذ التشطيبات والرسومات والتركيب في عدة مواقع.",
     kind: "retail",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256114/IMG-20251023-WA0065.jpg",
     gallery: [
@@ -518,6 +555,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "SNBER", ar: "SNBER" },
     title: { en: "SNBER Stand 2025", ar: "جناح SNBER 2025" },
+    summaryAr: "صنّعت CPS تجهيزات SNBER ونفّذتها في الرياض في ديسمبر 2025.",
     kind: "signage",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256109/IMG-20251211-WA0000.jpg",
     gallery: [
@@ -530,6 +568,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "banking-financial-services",
     locationSlug: "riyadh",
     event: "December 2025",
+    eventAr: "ديسمبر 2025",
   }),
   buildProject({
     projectCode: "CST-1003",
@@ -538,6 +577,7 @@ export const cloudinaryProjects: Project[] = [
     year: "2025",
     clientName: { en: "Sirar", ar: "سرار" },
     title: { en: "Sirar Cybersecurity Day Backdrop", ar: "خلفية يوم الأمن السيبراني لسرار" },
+    summaryAr: "صنّعت CPS خلفية يوم الأمن السيبراني لسرار ونفّذتها في الرياض في أكتوبر 2025.",
     kind: "signage",
     image: "https://res.cloudinary.com/jivfgunl/image/upload/v1789256128/IMG-20251015-WA0080.jpg",
     gallery: [
@@ -546,6 +586,7 @@ export const cloudinaryProjects: Project[] = [
     industrySlug: "technology-electronics",
     locationSlug: "riyadh",
     event: "Cybersecurity Day, October 2025",
+    eventAr: "يوم الأمن السيبراني — أكتوبر 2025",
   }),
 ];
 

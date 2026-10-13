@@ -84,6 +84,7 @@ export default async function ProductionCapabilitiesPage({ params }: PageProps) 
         />
         <CapabilityExplainerSection locale={locale} />
         <BeforeAfterSection
+          locale={locale}
           content={dictionary.beforeAfter}
           brandIcon={getSiteIcon()}
         />

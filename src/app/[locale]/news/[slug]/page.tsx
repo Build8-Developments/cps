@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { articleJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { InnerPageEngagement } from "@/components/sections/inner-page-engagement";
 import { PageHero } from "@/components/sections/page-hero";
+import { localizeNewsCategory } from "@/content/catalog";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { buildPageMetadata } from "@/lib/cms-seo";
 import { resolveDictionary } from "@/lib/dictionary";
@@ -75,7 +76,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
         />
         <PageHero
           locale={locale}
-          eyebrow={article.category || hubLabel}
+          eyebrow={localizeNewsCategory(article.category, locale) || hubLabel}
           title={article.title}
           lead={article.excerpt}
           image={article.image}

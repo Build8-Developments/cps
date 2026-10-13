@@ -46,7 +46,7 @@ export function ProjectLaunchSection({
           </div>
 
           <div className="project-launch-aside">
-            <p>{ar ? "من الموجز إلى التنفيذ مع فريق واحد." : "From brief to build, with one team."}</p>
+            <p>{ar ? "من تحديد المتطلبات إلى التنفيذ بفريق واحد." : "From brief to build, with one team."}</p>
             <Link href={localizePath(href, locale)} className="project-launch-action">
               <span>{ctaLabel ?? (ar ? "ابدأ مشروعك" : "Start a Project")}</span>
               <CtaArrow tone="navy" size="lg" />

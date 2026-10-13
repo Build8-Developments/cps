@@ -17,7 +17,7 @@ export function Breadcrumbs({ locale, items, compactOnMobile = false }: Breadcru
     <>
       <JsonLd data={breadcrumbsJsonLd(items, locale)} />
       <nav
-        aria-label="Breadcrumb"
+        aria-label={locale === "ar" ? "مسار التنقل" : "Breadcrumb"}
         className={`page-breadcrumbs${compactOnMobile ? " page-breadcrumbs--compact-mobile" : ""}`}
       >
         <div className="site-container">

@@ -351,7 +351,7 @@ export function SiteHeader({
               />
             </Link>
 
-          <nav className="site-nav-desktop" aria-label="Primary">
+          <nav className="site-nav-desktop" aria-label={locale === "ar" ? "التنقل الرئيسي" : "Primary"}>
             {items.map((item) => {
               const key = `${item.href}-${item.label}`;
               const hasPanel =
@@ -459,7 +459,11 @@ export function SiteHeader({
               className="menu-toggle"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-label={
+                locale === "ar"
+                  ? mobileOpen ? "أغلق القائمة" : "افتح القائمة"
+                  : mobileOpen ? "Close menu" : "Open menu"
+              }
               onClick={() => setMobileOpen((value) => !value)}
             >
               <span className="sr-only">Menu</span>

@@ -139,6 +139,20 @@ export function getSiteConfig(): SiteConfigShape {
   };
 }
 
+const ARABIC_PLACE_NAMES: Record<string, string> = {
+  Riyadh: "الرياض",
+  "Saudi Arabia": "المملكة العربية السعودية",
+};
+
+/** City and country for display; Arabic pages get Arabic place names. */
+export function formatSiteAddress(locale: "en" | "ar"): string {
+  const { city, countryName } = getSiteConfig().address;
+  const parts = [city, countryName].filter(Boolean);
+  return locale === "ar"
+    ? parts.map((part) => ARABIC_PLACE_NAMES[part] ?? part).join("، ")
+    : parts.join(", ");
+}
+
 export function getWhatsAppUrl(message?: string): string {
   const config = getSiteConfig();
   const phone = config.phone.replace(/\D/g, "");

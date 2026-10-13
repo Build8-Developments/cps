@@ -1122,12 +1122,12 @@ const dictionaries: Record<Locale, Dictionary> = {
         },
       ],
       workflowEyebrow: "كيف نعمل",
-      workflowTitle: "من الموجز إلى التسليم",
+      workflowTitle: "من تحديد المتطلبات إلى التسليم",
       workflowSupport:
         "خمس خطوات ثابتة نتبعها في كل مشروع، أياً كانت الخدمة.",
       workflowSteps: [
         {
-          title: "الموجز ومعاينة الموقع",
+          title: "متطلبات المشروع ومعاينة الموقع",
           description:
             "ندرس موجز المشروع وظروف الموقع والقيود الفنية قبل البدء في التصميم.",
         },
@@ -1139,7 +1139,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         {
           title: "التصنيع في مصنعنا",
           description:
-            "نصنّع كل العناصر في منشأتنا: الخشب والمعدن والأكريليك والطباعة واللافتات.",
+            "ننفّذ جميع العناصر في منشأتنا، بما يشمل أعمال الخشب والمعادن والأكريليك والطباعة وإنتاج اللافتات.",
         },
         {
           title: "التوصيل والتركيب",
@@ -1220,29 +1220,29 @@ const dictionaries: Record<Locale, Dictionary> = {
           slug: "exhibitions-booths",
         },
         {
-          title: "تصنيع وتجهيز الفعاليات",
+          title: "تصنيع تجهيزات الفعاليات",
           description: "منصات ومسارح وهياكل ديكور ومساحات بهوية العلامة وتجارب تفاعلية.",
           image: media.services.events,
           imageAlt: "تجهيزات فعالية من تصنيع CPS",
           slug: "event-fabrication",
         },
         {
-          title: "التجهيز الداخلي",
+          title: "التجهيزات الداخلية",
           description: "مساحات تجارية ومكاتب وصالات عرض ومتاجر ومساحات بهوية العلامة.",
           image: media.services.fitOut,
           imageAlt: "تجهيز داخلي لمساحة تجارية",
           slug: "fit-out-interiors",
         },
         {
-          title: "وحدات العرض ونقاط البيع",
-          description: "أرفف عرض (جندولات)، وحوامل منتجات، ووحدات نقاط البيع، وأكشاك، وواجهات عرض.",
+          title: "وحدات عرض المنتجات",
+          description: "أرفف عرض (جندولات)، وحوامل منتجات، ووحدات العرض عند نقاط البيع، وأكشاك، وواجهات عرض.",
           image: media.services.retail,
           imageAlt: "وحدة عرض في متجر",
           slug: "retail-displays",
         },
         {
           title: "التصنيع حسب الطلب",
-          description: "تصنيع بالخشب والمعدن والأكريليك وماكينات CNC والمواد المتعددة.",
+          description: "أعمال تصنيع حسب الطلب بالخشب والمعادن والأكريليك، باستخدام تقنيات CNC والجمع بين المواد بحسب متطلبات المشروع.",
           image: media.services.fabrication,
           imageAlt: "ورشة التصنيع حسب الطلب",
           slug: "custom-fabrication",
@@ -1379,7 +1379,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     faq: {
       eyebrow: "الأسئلة الشائعة",
       title: "أسئلة عن CPS",
-      support: "إجابات واضحة عن الخدمات والمدد الزمنية ومناطق التغطية — قبل أن ترسل الموجز.",
+      support: "إجابات واضحة عن الخدمات والمدد الزمنية ومناطق التغطية، قبل أن ترسل تفاصيل مشروعك.",
       items: [
         {
           question: "ماذا تقدّم CPS؟",
@@ -1502,7 +1502,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     },
     locationsPage: {
       eyebrow: "المدن",
-      title: "المواقع",
+      title: "مناطق خدمتنا",
       lead: "حضور في أبرز مدن المعارض بالمملكة العربية السعودية.",
     },
     newsPage: {
@@ -1512,7 +1512,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     },
     projectPage: {
       challenge: "التحدي",
-      approach: "حل CPS",
+      approach: "الحل والتنفيذ",
       outcome: "النتيجة",
       gallery: "معرض الصور",
       next: "المشروع التالي",
@@ -1531,7 +1531,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       eyebrow: "تواصل معنا",
       title: "كل مشروع يبدأ بمحادثة.",
       lead: "شاركنا تفاصيل مشروعك، وسنعود إليك بخطوة تالية واضحة.",
-      businessHours: "الأحد–الخميس، 9:00–18:00 بتوقيت السعودية",
+      businessHours: "الأحد–الخميس، من 9:00 صباحًا إلى 6:00 مساءً بتوقيت السعودية",
       info: {
         emailLabel: "البريد الإلكتروني",
         phoneLabel: "الهاتف",
