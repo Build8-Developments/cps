@@ -22,13 +22,24 @@ const cps = {
   },
   services: {
     exhibitions: "https://res.cloudinary.com/jivfgunl/image/upload/v1791383289/Exhibitions_booths.webp",
-    events: "https://res.cloudinary.com/jivfgunl/image/upload/v1791383293/event-fabrication.webp",
-    fitOut: "https://res.cloudinary.com/jivfgunl/image/upload/v1791383298/fit-out_interiors.webp",
+    events: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850900/Event_Fabrication.png",
+    fitOut: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850901/Fit-Out.png",
     retail: "https://res.cloudinary.com/jivfgunl/image/upload/v1791382160/Displays.png",
     fabrication: "https://res.cloudinary.com/jivfgunl/image/upload/v1791382163/Custom_Fabrication.png",
     printing: "https://res.cloudinary.com/jivfgunl/image/upload/v1791383290/printing_signange.webp",
     rental: "https://res.cloudinary.com/jivfgunl/image/upload/v1791382158/Reliable_Rental_Solutions.png",
     installation: "https://res.cloudinary.com/jivfgunl/image/upload/v1791383295/installation_project-delivery.webp",
+  },
+  /** Wide (2:1) service hero banners from `CPS Website/services_banner`. */
+  serviceBanners: {
+    exhibitions: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850948/Exhibitions_Booths_11.png",
+    events: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850947/Event_Fabrication33.png",
+    fitOut: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850945/Fit-Out_Interiors_77.png",
+    retail: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850943/Retail_Displays_55.png",
+    fabrication: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850942/Custom_Fabrication_22.png",
+    printing: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850939/Printing_Signage_44.png",
+    rental: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850947/Rental_Solutions_66.png",
+    installation: "https://res.cloudinary.com/jivfgunl/image/upload/v1791850940/Installation_Project_Delivery_.png",
   },
   homeCards: {
     fitOut: "https://res.cloudinary.com/jivfgunl/image/upload/v1789400018/Trusted_Fit-Out01.png",
@@ -40,29 +51,37 @@ const cps = {
 
 export const media = {
   homeHero: cps.home.booth,
-  /** Home hero photo wall — enough shots that no column repeats on screen. */
+  /**
+   * Home hero photo wall. Every shot is a different scene, listed row by row
+   * (index % 3 is the column) so neighbours contrast in colour and subject.
+   * Odd rows render 4:5 and even rows 1:1, so wide shots sit on even rows.
+   */
   homeHeroGallery: [
-    cps.services.exhibitions,
-    cps.home.booth,
-    cps.services.fitOut,
     cps.home.activation,
-    cps.services.events,
-    cps.homeCards.installation,
-    cps.home.display,
-    cps.services.retail,
-    cps.about.workshop,
-    cps.services.fabrication,
-    cps.homeCards.rental,
-    cps.home.about,
-    cps.services.printing,
-    cps.homeCards.fitOut,
-    cps.about.craft,
     cps.services.rental,
-    cps.home.howWeBuild,
-    cps.about.build,
-    cps.services.installation,
-    cps.homeCards.before,
+    cps.services.printing,
+
+    cps.serviceBanners.rental,
+    cps.serviceBanners.installation,
+    cps.services.retail,
+
+    cps.homeCards.fitOut,
     cps.home.after,
+    cps.services.installation,
+
+    cps.services.fabrication,
+    cps.serviceBanners.retail,
+    cps.home.display,
+
+    cps.services.exhibitions,
+    cps.about.workshop,
+    cps.homeCards.rental,
+
+    cps.services.fitOut,
+    cps.serviceBanners.fitOut,
+    cps.services.events,
+
+    cps.home.howWeBuild,
   ],
   homeFloating: [
     cps.home.activation,
@@ -122,6 +141,8 @@ export const media = {
     printing: cps.services.printing,
     lightbox: cps.services.retail,
   },
+
+  serviceBanners: cps.serviceBanners,
 
   boothTypes: {
     custom: cps.services.exhibitions,

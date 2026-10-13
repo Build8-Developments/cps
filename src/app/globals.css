@@ -74,14 +74,28 @@
   color: #ffffff;
 }
 
+.service-architecture-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Navy wash over the banner: solid behind the copy, clearing toward the end
+   edge so the photo reads, with a top band that keeps the header legible. */
 .service-architecture-hero-shade {
   position: absolute;
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(circle at 73% 24%, rgba(0, 227, 254, 0.2), transparent 23rem),
-    radial-gradient(circle at 18% 92%, rgba(33, 146, 180, 0.22), transparent 29rem),
-    linear-gradient(115deg, #061525 0%, #09233b 47%, #0f3355 100%);
+    linear-gradient(180deg, rgba(6, 21, 37, 0.9) 0%, rgba(6, 21, 37, 0.6) 17%, rgba(6, 21, 37, 0) 42%),
+    radial-gradient(circle at 18% 92%, rgba(33, 146, 180, 0.2), transparent 29rem),
+    linear-gradient(
+      90deg,
+      rgba(6, 21, 37, 0.95) 0%,
+      rgba(7, 27, 46, 0.86) 36%,
+      rgba(9, 35, 59, 0.5) 68%,
+      rgba(15, 51, 85, 0.28) 100%
+    );
 }
 
 .service-architecture-hero-shade::before {
@@ -201,9 +215,15 @@
 
 [dir="rtl"] .service-architecture-hero-shade {
   background:
-    radial-gradient(circle at 27% 24%, rgba(0, 227, 254, 0.2), transparent 23rem),
-    radial-gradient(circle at 82% 92%, rgba(33, 146, 180, 0.22), transparent 29rem),
-    linear-gradient(245deg, #061525 0%, #09233b 47%, #0f3355 100%);
+    linear-gradient(180deg, rgba(6, 21, 37, 0.9) 0%, rgba(6, 21, 37, 0.6) 17%, rgba(6, 21, 37, 0) 42%),
+    radial-gradient(circle at 82% 92%, rgba(33, 146, 180, 0.2), transparent 29rem),
+    linear-gradient(
+      270deg,
+      rgba(6, 21, 37, 0.95) 0%,
+      rgba(7, 27, 46, 0.86) 36%,
+      rgba(9, 35, 59, 0.5) 68%,
+      rgba(15, 51, 85, 0.28) 100%
+    );
 }
 
 .service-architecture-overview {
@@ -2070,10 +2090,11 @@ a.service-showcase-all:not(.btn-secondary) {
     padding-bottom: 4rem;
   }
 
-  .service-architecture-hero-shade {
+  /* Copy spans the full width here, so the wash stays even across it. */
+  .service-architecture-hero-shade,
+  [dir="rtl"] .service-architecture-hero-shade {
     background:
-      radial-gradient(circle at 80% 18%, rgba(0, 227, 254, 0.17), transparent 15rem),
-      linear-gradient(145deg, #061525 0%, #0a2844 65%, #0f3355 100%);
+      linear-gradient(180deg, rgba(6, 21, 37, 0.9) 0%, rgba(8, 31, 53, 0.78) 55%, rgba(10, 40, 68, 0.86) 100%);
   }
 
   .service-architecture-hero-inner {
@@ -4157,22 +4178,27 @@ body:has(.service-architecture-hero) .site-header.is-inner-page.is-solid .site-h
 }
 
 .home-hero-track {
-  display: flex;
-  flex-direction: column;
   animation: hero-column-up 60s linear infinite;
   will-change: transform;
 }
 
 .home-hero-column:nth-child(2) .home-hero-track {
   animation-name: hero-column-down;
-  animation-duration: 76s;
+  animation-duration: 64s;
 }
 
 .home-hero-column:nth-child(3) .home-hero-track {
-  animation-duration: 68s;
+  animation-duration: 58s;
 }
 
-/* Spacing lives on the shot (not a flex gap) so the -50% loop is seamless. */
+/* The track holds two identical sets, so -50% is exactly one set: the loop
+   restarts on the same frame it ended on. Shapes alternate per set (not per
+   track) and spacing lives on the shot (not a gap) to keep the sets identical. */
+.home-hero-set {
+  display: flex;
+  flex-direction: column;
+}
+
 .home-hero-shot {
   position: relative;
   flex: none;

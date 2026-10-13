@@ -14,20 +14,27 @@ type HomeHeroProps = {
 
 const GALLERY_COLUMNS = 3;
 
-/** One drifting column — the shots render twice so the loop has no seam. */
+/**
+ * One drifting column. The shots render as two identical sets, so the track
+ * can slide by exactly one set and land on the same picture it started from.
+ */
 function HeroGalleryColumn({ images }: { images: string[] }) {
   return (
     <div className="home-hero-column">
       <div className="home-hero-track">
-        {[...images, ...images].map((src, index) => (
-          <div key={`${index}-${src}`} className="home-hero-shot">
-            <Image
-              src={src}
-              alt=""
-              fill
-              sizes="(max-width: 1023px) 36vw, 20vw"
-              loading="eager"
-            />
+        {[0, 1].map((set) => (
+          <div key={set} className="home-hero-set">
+            {images.map((src) => (
+              <div key={src} className="home-hero-shot">
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="(max-width: 1023px) 36vw, 20vw"
+                  loading="eager"
+                />
+              </div>
+            ))}
           </div>
         ))}
       </div>
@@ -56,7 +63,7 @@ function headlineLines(headline: string): string[] {
 export function HomeHero({ locale, content }: HomeHeroProps) {
   const lines = headlineLines(content.headline);
   // CMS images lead; local photography fills the wall. Each column needs
-  // enough unique shots that half its track is taller than the hero.
+  // enough unique shots that one set is taller than the hero.
   const cmsImages = (getSiteConfig().homeFloatingImages ?? []).filter(Boolean);
   const images = [...new Set([...cmsImages, ...media.homeHeroGallery])].slice(
     0,

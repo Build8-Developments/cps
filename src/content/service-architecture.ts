@@ -30,6 +30,8 @@ export type CatalogueCategory = {
 export type ServiceArchitecture = {
   slug: string;
   image: string;
+  /** Wide photo behind the service page hero. */
+  banner: string;
   title: LocalizedText;
   excerpt: LocalizedText;
   hero: {
@@ -281,6 +283,7 @@ export const serviceArchitecture: ServiceArchitecture[] = [
   {
     slug: "exhibitions-booths",
     image: media.services.exhibitions,
+    banner: media.serviceBanners.exhibitions,
     title: t("Exhibitions & Booths", "المعارض والأجنحة"),
     excerpt: t(
       "Custom exhibition environments, modular solutions and large-scale pavilions.",
@@ -357,6 +360,7 @@ export const serviceArchitecture: ServiceArchitecture[] = [
   {
     slug: "event-fabrication",
     image: media.services.events,
+    banner: media.serviceBanners.events,
     title: t("Event Fabrication", "تصنيع وتجهيز الفعاليات"),
     excerpt: t("Stages, scenic structures, branded environments and experiential builds.", "منصات وديكورات مسرحية ومساحات بهوية علامتك وتجارب تفاعلية."),
     showcase: {
@@ -413,6 +417,7 @@ export const serviceArchitecture: ServiceArchitecture[] = [
   {
     slug: "fit-out-interiors",
     image: media.services.fitOut,
+    banner: media.serviceBanners.fitOut,
     title: t("Fit-Out & Interiors", "التجهيزات الداخلية"),
     excerpt: t("Commercial interiors, offices, showrooms, retail and branded spaces.", "مساحات تجارية ومكاتب وصالات عرض ومتاجر ومساحات بهوية العلامة."),
     showcase: {
@@ -459,6 +464,7 @@ export const serviceArchitecture: ServiceArchitecture[] = [
   {
     slug: "retail-displays",
     image: media.services.retail,
+    banner: media.serviceBanners.retail,
     title: t("Retail Displays", "وحدات العرض ونقاط البيع"),
     excerpt: t("Gondolas, product displays, POS/POP units, kiosks and window displays.", "جندولات وحوامل منتجات ووحدات نقاط البيع وأكشاك وواجهات عرض."),
     showcase: {
@@ -508,6 +514,7 @@ export const serviceArchitecture: ServiceArchitecture[] = [
   {
     slug: "custom-fabrication",
     image: media.services.fabrication,
+    banner: media.serviceBanners.fabrication,
     title: t("Custom Fabrication", "التصنيع المخصص"),
     excerpt: t("Wood, metal, acrylic, CNC and mixed-material bespoke fabrication.", "تصنيع حسب الطلب بالخشب والمعدن والأكريليك وتقنية CNC وبمواد متعددة."),
     showcase: {
@@ -553,6 +560,7 @@ export const serviceArchitecture: ServiceArchitecture[] = [
   {
     slug: "printing-signage",
     image: media.services.printing,
+    banner: media.serviceBanners.printing,
     title: t("Printing & Signage", "الطباعة واللافتات"),
     excerpt: t("Large-format graphics, environmental branding and signage systems.", "طباعة كبيرة الحجم، وهوية بصرية للمساحات، وأنظمة لافتات متكاملة."),
     showcase: {
@@ -603,6 +611,7 @@ export const serviceArchitecture: ServiceArchitecture[] = [
   {
     slug: "rental-solutions",
     image: media.services.rental,
+    banner: media.serviceBanners.rental,
     title: t("Rental Solutions", "حلول التأجير"),
     excerpt: t("Reusable event, exhibition and display assets.", "أثاث وتجهيزات ووحدات عرض قابلة لإعادة الاستخدام للفعاليات والمعارض."),
     showcase: {
@@ -643,6 +652,7 @@ export const serviceArchitecture: ServiceArchitecture[] = [
   {
     slug: "installation-project-delivery",
     image: media.services.installation,
+    banner: media.serviceBanners.installation,
     title: t("Installation & Project Delivery", "التركيب وتسليم المشاريع"),
     excerpt: t("Technical planning, logistics, installation, storage and maintenance.", "تخطيط فني ولوجستيات وتركيب وتخزين وصيانة."),
     showcase: {

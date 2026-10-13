@@ -112,8 +112,10 @@ Document-level i18n: each content doc has `language: en | ar`.
   a bilingual production brief in place of the old procedural placeholder; the
   source field remains available for the final approved model.
 - Site Settings `homeFloatingImages` lead the home hero's photo wall; local
-  `media.homeHeroGallery` fills the rest. The home hero poster/video fields are
-  not rendered by the hero.
+  `media.homeHeroGallery` fills the rest. That list is curated so every shot is
+  a different scene and is written row by row across the three columns; keep it
+  free of repeats when adding to it. The home hero poster/video fields are not
+  rendered by the hero.
 - Uploaded media is resolved from Sanity's image/file CDN; local URLs remain as a
   safe fallback when CMS media is incomplete.
 

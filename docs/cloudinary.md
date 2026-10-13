@@ -65,6 +65,14 @@ their service image until matching assets are uploaded:
 - `custom-fabrication:decorative-structures`
 - `custom-fabrication:product-displays`
 
+## Service hero banners
+
+The `CPS Website/services_banner` folder holds one wide (2:1) photo per service.
+`media.serviceBanners` in `src/content/media.ts` lists them, each service in
+`src/content/service-architecture.ts` points at its own through `banner`, and
+`ServiceArchitecturePage` renders it behind the service hero under a navy wash.
+The banner is set in code; the Sanity `service` documents do not carry it.
+
 ## Client logos
 
 The `CPS Website/logos` folder holds the client-supplied Trusted By set in two

@@ -215,6 +215,16 @@ export function ServiceArchitecturePage({
   return (
     <>
       <section className="service-architecture-hero">
+        <div className="service-architecture-hero-media">
+          <Image
+            src={service.banner}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
         <div className="service-architecture-hero-shade" />
         <div className="site-container service-architecture-hero-inner">
           <div className="service-architecture-hero-meta">
