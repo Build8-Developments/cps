@@ -5,6 +5,8 @@ import { SocialIcon } from "@/components/ui/social-icon";
 import { getContactFormCopy } from "@/content/contact-form.copy";
 import type { Locale } from "@/lib/i18n";
 import {
+  CPS_MAPS_EMBED_URL,
+  CPS_MAPS_URL,
   formatSiteAddress,
   getMailtoUrl,
   getWhatsAppUrl,
@@ -45,16 +47,13 @@ type ContactPageSectionsProps = {
 function mapsOpenUrl(config: SiteConfigShape) {
   const configured = config.googleMapsUrl?.trim();
   if (configured && !configured.includes("/maps/embed")) return configured;
-  const query = encodeURIComponent(
-    `${config.name}, ${config.address.city}, ${config.address.countryName}`,
-  );
-  return `https://www.google.com/maps/search/?api=1&query=${query}`;
+  return CPS_MAPS_URL;
 }
 
 function mapsEmbedUrl(config: SiteConfigShape) {
   const configured = config.googleMapsUrl?.trim();
   if (configured?.includes("/maps/embed")) return configured;
-  return "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d463877.3058960534!2d46.41503094999999!3d24.725455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e2fd08!2sRiyadh!5e0!3m2!1sen!2ssa!4v1710000000000!5m2!1sen!2ssa";
+  return CPS_MAPS_EMBED_URL;
 }
 
 export function ContactPageSections({

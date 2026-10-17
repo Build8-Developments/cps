@@ -2,6 +2,7 @@ import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/content/dictionaries";
 import { getDictionaryLocal } from "@/content/dictionaries.local";
 import {
+  CPS_MAPS_URL,
   resolveContactEmail,
   resolveContactPhone,
   resolveContactPhoneDisplay,
@@ -95,7 +96,7 @@ export function toSiteConfig(
       labelAr: sanitizeText(data.portfolio?.labelAr) || "حمّل ملف أعمالنا",
       href: sanitizeText(portfolioHref),
     },
-    googleMapsUrl: sanitizeText(data.googleMapsUrl) || undefined,
+    googleMapsUrl: sanitizeText(data.googleMapsUrl) || CPS_MAPS_URL,
     googleAnalyticsId: sanitizeText(data.googleAnalyticsId) || undefined,
     googleTagManagerId: sanitizeText(data.googleTagManagerId) || undefined,
     defaultKeywords: data.defaultKeywords?.map(sanitizeText).filter(Boolean),

@@ -1,12 +1,19 @@
 import type { SeoMeta } from "@/types/seo";
 
-export const CPS_EMAIL = "inquiry@creativeprofessionals.com";
+export const CPS_EMAIL = "inquiry@creativesprofessionals.com";
 export const CPS_PHONE = "+966560846520";
 export const CPS_PHONE_DISPLAY = "+966 56 084 6520";
+export const CPS_MAPS_URL = "https://maps.app.goo.gl/jHYVBC2qY3WxZH9z6";
+/** Same pin as CPS_MAPS_URL (24.6557418, 46.8142797); short links can't be embedded. */
+export const CPS_MAPS_EMBED_URL =
+  "https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s24.6557418,46.8142797!6i16";
+
+/** Placeholder or misspelled addresses that should never reach the page. */
+const STALE_EMAILS = new Set(["hello@cps.com", "inquiry@creativeprofessionals.com"]);
 
 export function resolveContactEmail(value?: string): string {
   const email = value?.trim();
-  return !email || email.toLowerCase() === "hello@cps.com" ? CPS_EMAIL : email;
+  return !email || STALE_EMAILS.has(email.toLowerCase()) ? CPS_EMAIL : email;
 }
 
 export function resolveContactPhone(value?: string): string {
@@ -113,6 +120,7 @@ export function getSiteConfig(): SiteConfigShape {
       labelAr: "حمّل ملف أعمالنا",
       href: process.env.NEXT_PUBLIC_PORTFOLIO_URL ?? "",
     },
+    googleMapsUrl: CPS_MAPS_URL,
     brandColors: {
       accent: "#2192b4",
       primary: "#0f3355",

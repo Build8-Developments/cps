@@ -14,7 +14,7 @@ const copy = {
     body: [
       "Content on this site is provided for information about CPS exhibition design and manufacturing services.",
       "Project scope, timelines, and commercial terms are confirmed in a written proposal or contract.",
-      "Questions about these terms: inquiry@creativeprofessionals.com.",
+      "Questions about these terms: inquiry@creativesprofessionals.com.",
     ],
   },
   ar: {
@@ -23,7 +23,7 @@ const copy = {
     body: [
       "يُقدَّم محتوى هذا الموقع لأغراض تعريفية بخدمات CPS في تصميم أجنحة المعارض وتصنيعها.",
       "يُؤكَّد نطاق كل مشروع وجدوله الزمني وشروطه التجارية في عرض مكتوب أو عقد.",
-      "للاستفسار عن هذه الشروط، راسلنا على inquiry@creativeprofessionals.com.",
+      "للاستفسار عن هذه الشروط، راسلنا على inquiry@creativesprofessionals.com.",
     ],
   },
 } as const;

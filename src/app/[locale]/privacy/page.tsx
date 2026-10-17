@@ -14,7 +14,7 @@ const copy = {
     body: [
       "We use contact details you share through forms, email, or WhatsApp only to respond to your inquiry and deliver related services.",
       "Analytics may be used to understand site performance. We do not sell personal data.",
-      "For privacy questions, email inquiry@creativeprofessionals.com.",
+      "For privacy questions, email inquiry@creativesprofessionals.com.",
     ],
   },
   ar: {
@@ -23,7 +23,7 @@ const copy = {
     body: [
       "نستخدم بيانات التواصل التي تقدّمها عبر النماذج أو البريد الإلكتروني أو واتساب للرد على استفسارك وتقديم الخدمات المرتبطة به فقط.",
       "قد نستخدم أدوات التحليل لفهم أداء الموقع، ولا نبيع البيانات الشخصية.",
-      "لأي استفسار يتعلق بالخصوصية، راسلنا على inquiry@creativeprofessionals.com.",
+      "لأي استفسار يتعلق بالخصوصية، راسلنا على inquiry@creativesprofessionals.com.",
     ],
   },
 } as const;

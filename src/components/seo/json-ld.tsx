@@ -125,6 +125,7 @@ export function localBusinessJsonLd() {
       addressLocality: config.address.city,
       addressCountry: config.address.country,
     },
+    hasMap: config.googleMapsUrl,
     sameAs: [config.social.instagram, config.social.linkedin, config.social.x].filter(
       Boolean,
     ),
